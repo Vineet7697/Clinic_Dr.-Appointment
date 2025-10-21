@@ -1,0 +1,16 @@
+{
+  "cities": [
+    { "id": 1, "name": "Delhi" },
+    { "id": 2, "name": "Mumbai" },
+    { "id": 3, "name": "Bhopal" },
+    { "id": 4, "name": "Pune" }
+  ],
+  "diseases": [
+    { "id": 1, "name": "Dermatology" },
+    { "id": 2, "name": "Neurology" },
+    { "id": 3, "name": "Dentist" },
+    { "id": 4, "name": "General physician" },
+    { "id": 5, "name": "Homoeopath" },
+    { "id": 6, "name": "Aurveda" }
+  ]
+}

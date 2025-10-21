@@ -101,7 +101,7 @@ const Doctor = () => {
   return (
     <>
       <section className="relative w-full min-h-screen flex flex-col items-center justify-center text-white overflow-hidden px-4 sm:px-6 lg:px-12">
-        <div className="fixed inset-0 w-full h-full bg-[url('images/hero.png')] bg-cover bg-center -z-10"></div>
+        <div className="fixed inset-0 w-full h-full bg-[url('/images/hero.png')] bg-cover bg-center -z-10"></div>
 
         <div className="text-center space-y-6 w-full max-w-4xl mt-20">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">

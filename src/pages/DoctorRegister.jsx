@@ -232,6 +232,7 @@ const DoctorRegister = () => {
               <input
                 type="text"
                 name="fullName"
+                placeholder="Full name"
                 value={formData.fullName}
                 onChange={handleChange}
                 className={inputClass}
@@ -332,7 +333,7 @@ const DoctorRegister = () => {
                 name="document"
                 accept=".pdf,.jpg,.jpeg,.png"
                 onChange={handleChange}
-                className="w-full"
+                className={inputClass}
               />
               {errors.document && (
                 <p className="text-red-500 text-xs mt-1">{errors.document}</p>

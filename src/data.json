@@ -12,5 +12,59 @@
     { "id": 4, "name": "General physician" },
     { "id": 5, "name": "Homoeopath" },
     { "id": 6, "name": "Aurveda" }
-  ]
+  ],
+   "doctor":[
+  {
+    "name": "Dr. Rohan Sharma",
+    "specialization": "Cardiologist",
+    "description": "Expert in cardiology with 10+ years of experience in patient care.",
+   "image": "/images/doctor1.jpg"
+  },
+  {
+    "name": "Dr. Priya Verma",
+    "specialization": "Pediatrician",
+    "description": "Pediatrician with focus on child wellness and early development.",
+    "image": "/images/doctor2.avif"
+  },
+  {
+    "name": "Dr. Aakash Singh",
+    "specialization": "Orthopedic Specialist",
+    "description": "Specialist in advanced joint treatments and fracture management.",
+     "image": "/images/doctor3.jpg"
+  },
+  {
+    "name": "Dr. Neha Patel",
+    "specialization": "Dermatologist",
+    "description": "Expert in cosmetic dermatology and laser-based skin care.",
+     "image": "/images/doctor4.jpg"
+  
+  },
+  {
+    "name": "Dr. kanika sharma",
+    "specialization": "Dermatologist",
+    "description": "Expert in cosmetic dermatology and laser-based skin care.",
+    "image": "/images/doctor5.webp"
+  
+  },
+  {
+    "name": "Dr. md Rauf Kallu (RK)",
+    "specialization": "Dermatologist",
+    "description": "Expert in cosmetic dermatology and laser-based skin care.",
+    "image": "/images/doctor6.jpg"
+  
+  },
+  {
+    "name": "Dr. Rajiya Sultan",
+    "specialization": "Dermatologist",
+    "description": "Expert in cosmetic dermatology and laser-based skin care.",
+    "image": "/images/doctor7.avif"
+  },
+  {
+    "name": "Dr. Bengali",
+    "specialization": "Dermatologist",
+    "description": "Expert in cosmetic dermatology and laser-based skin care.",
+    "image": "/images/doctor8.jpg"
+  }
+]
+
 }

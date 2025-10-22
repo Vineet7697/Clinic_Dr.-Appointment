@@ -3,67 +3,78 @@
     { "id": 1, "name": "Delhi" },
     { "id": 2, "name": "Mumbai" },
     { "id": 3, "name": "Bhopal" },
-    { "id": 4, "name": "Pune" }
+    { "id": 4, "name": "Indore" },
+    { "id": 5, "name": "Jhansi" },
+    { "id": 6, "name": "Jabalpur" }
   ],
   "diseases": [
-    { "id": 1, "name": "Dermatology" },
+    { "id": 1, "name": "Dermatologist" },
     { "id": 2, "name": "Neurology" },
-    { "id": 3, "name": "Dentist" },
+    { "id": 3, "name": "Pediatrician" },
     { "id": 4, "name": "General physician" },
     { "id": 5, "name": "Homoeopath" },
-    { "id": 6, "name": "Aurveda" }
+    { "id": 6, "name": "Aurveda" },
+    { "id": 7, "name": "cardiology" }
   ],
    "doctor":[
   {
     "name": "Dr. Rohan Sharma",
-    "specialization": "Cardiologist",
+    "specialization": "cardiology",
     "description": "Expert in cardiology with 10+ years of experience in patient care.",
-   "image": "/images/doctor1.jpg"
+   "image": "/images/doctor1.jpg",
+   "city":"Jhansi"
   },
   {
     "name": "Dr. Priya Verma",
-    "specialization": "Pediatrician",
-    "description": "Pediatrician with focus on child wellness and early development.",
-    "image": "/images/doctor2.avif"
+  "specialization": "Pediatrician",
+  "description": "Pediatrician with focus on child wellness.",
+  "image": "/images/doctor2.avif",
+  "city": "Delhi"
   },
   {
     "name": "Dr. Aakash Singh",
-    "specialization": "Orthopedic Specialist",
-    "description": "Specialist in advanced joint treatments and fracture management.",
-     "image": "/images/doctor3.jpg"
+    "specialization": "Homoeopath",
+    "description": "Specialist in advanced joint treatments and Homoeopath.",
+     "image": "/images/doctor3.jpg",
+     "city":"Indore"
   },
   {
     "name": "Dr. Neha Patel",
     "specialization": "Dermatologist",
     "description": "Expert in cosmetic dermatology and laser-based skin care.",
-     "image": "/images/doctor4.jpg"
+     "image": "/images/doctor4.jpg",
+     "city":"Bhopal"
   
   },
   {
     "name": "Dr. kanika sharma",
     "specialization": "Dermatologist",
     "description": "Expert in cosmetic dermatology and laser-based skin care.",
-    "image": "/images/doctor5.webp"
+    "image": "/images/doctor5.webp",
+    "city":"Bhopal"
   
   },
   {
     "name": "Dr. md Rauf Kallu (RK)",
     "specialization": "Dermatologist",
     "description": "Expert in cosmetic dermatology and laser-based skin care.",
-    "image": "/images/doctor6.jpg"
+    "image": "/images/doctor6.jpg",
+    "city":"Bhopal"
   
   },
   {
     "name": "Dr. Rajiya Sultan",
-    "specialization": "Dermatologist",
+    "specialization": "General physician",
     "description": "Expert in cosmetic dermatology and laser-based skin care.",
-    "image": "/images/doctor7.avif"
+    "image": "/images/doctor7.avif",
+    "city":"Jabalpur"
   },
   {
     "name": "Dr. Bengali",
-    "specialization": "Dermatologist",
+    "specialization": "Aurveda",
     "description": "Expert in cosmetic dermatology and laser-based skin care.",
-    "image": "/images/doctor8.jpg"
+    "image": "/images/doctor8.jpg",
+    "city":"Bhopal"
   }
 ]
 

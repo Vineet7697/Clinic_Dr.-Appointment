@@ -10,6 +10,7 @@ import CreatePassword from "./pages/CreatePassword";
 import Register from "./pages/Register";
 import Login from "./pages/Signup";
 import DoctorRegister from "./pages/DoctorRegister";
+import Cards from "./pages/Cards";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/doctorregister" element={<DoctorRegister/>} />
+        <Route path="/cards" element={<Cards/>}  />
           </Route>
         </Routes>
       </BrowserRouter>

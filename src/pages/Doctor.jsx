@@ -3,7 +3,8 @@ import data from "../data.json";
 import Webcam from "react-webcam";
 import QrScanner from "qr-scanner";
 import Typewriter from "typewriter-effect";
-
+import { useNavigate } from "react-router-dom";
+import Cards from "./Cards";
 import {
   FaSearch,
   FaMapMarkerAlt,
@@ -28,6 +29,9 @@ const Doctor = () => {
   const [diseaseQuery, setDiseaseQuery] = useState("");
   const [showDiseaseDropdown, setShowDiseaseDropdown] = useState(false);
   const [diseases, setDiseases] = useState([]);
+  const navigate = useNavigate();
+
+
 
   const locationRef = useRef();
   const diseaseRef = useRef();
@@ -97,6 +101,18 @@ const Doctor = () => {
       setDatas("No QR code found in image");
     }
   };
+
+
+
+  const handleSearch = () => {
+    // Redirect to /clinic with query params
+    navigate(
+      `/cards?city=${encodeURIComponent(cityQuery)}&disease=${encodeURIComponent(diseaseQuery)}`
+    );
+  };
+
+
+
 
   return (
     <>
@@ -194,6 +210,7 @@ const Doctor = () => {
                 <button
                   type="submit"
                   className="text-white font-semibold cursor-pointer"
+                  onClick={handleSearch}
                 >
                   Search
                 </button>
@@ -209,7 +226,7 @@ const Doctor = () => {
             <h2 className="text-base sm:text-lg font-bold">Scan any QR code</h2>
             <div
               onClick={() => setScanning(true)}
-              className="flex items-center justify-center p-4 bg-gray-100 rounded-full w-15 h-15 shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+              className="flex items-center justify-center p-4 bg-gray-100 rounded-full w-16 h-16 shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
             >
               <FaQrcode size={40} color="green" />
             </div>

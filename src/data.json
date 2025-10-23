@@ -14,68 +14,80 @@
     { "id": 4, "name": "General physician" },
     { "id": 5, "name": "Homoeopath" },
     { "id": 6, "name": "Aurveda" },
-    { "id": 7, "name": "cardiology" }
+    { "id": 7, "name": "Cardiology" }
   ],
-   "doctor":[
-  {
-    "name": "Dr. Rohan Sharma",
-    "specialization": "cardiology",
-    "description": "Expert in cardiology with 10+ years of experience in patient care.",
-   "image": "/images/doctor1.jpg",
-   "city":"Jhansi"
-  },
-  {
-    "name": "Dr. Priya Verma",
-  "specialization": "Pediatrician",
-  "description": "Pediatrician with focus on child wellness.",
-  "image": "/images/doctor2.avif",
-  "city": "Delhi"
-  },
-  {
-    "name": "Dr. Aakash Singh",
-    "specialization": "Homoeopath",
-    "description": "Specialist in advanced joint treatments and Homoeopath.",
-     "image": "/images/doctor3.jpg",
-     "city":"Indore"
-  },
-  {
-    "name": "Dr. Neha Patel",
-    "specialization": "Dermatologist",
-    "description": "Expert in cosmetic dermatology and laser-based skin care.",
-     "image": "/images/doctor4.jpg",
-     "city":"Bhopal"
-  
-  },
-  {
-    "name": "Dr. kanika sharma",
-    "specialization": "Dermatologist",
-    "description": "Expert in cosmetic dermatology and laser-based skin care.",
-    "image": "/images/doctor5.webp",
-    "city":"Bhopal"
-  
-  },
-  {
-    "name": "Dr. md Rauf Kallu (RK)",
-    "specialization": "Dermatologist",
-    "description": "Expert in cosmetic dermatology and laser-based skin care.",
-    "image": "/images/doctor6.jpg",
-    "city":"Bhopal"
-  
-  },
-  {
-    "name": "Dr. Rajiya Sultan",
-    "specialization": "General physician",
-    "description": "Expert in cosmetic dermatology and laser-based skin care.",
-    "image": "/images/doctor7.avif",
-    "city":"Jabalpur"
-  },
-  {
-    "name": "Dr. Bengali",
-    "specialization": "Aurveda",
-    "description": "Expert in cosmetic dermatology and laser-based skin care.",
-    "image": "/images/doctor8.jpg",
-    "city":"Bhopal"
-  }
-]
-
+  "doctor": [
+    {
+      "image": "/images/doctor1.jpg",
+      "name": "Dr. Rohan Sharma",
+      "specialization": "Cardiology",
+      "Year of experience": 10,
+      "city": "Jhansi",
+      "Rating": 4.9,
+      "description": "Expert in cardiology with 10+ years of experience in patient care."
+    },
+    {
+      "image": "/images/doctor2.avif",
+      "name": "Dr. Priya Verma",
+      "specialization": "Pediatrician",
+      "Year of experience": 8,
+      "city": "Delhi",
+      "Rating": 4.7,
+      "description": "Pediatrician with focus on child wellness and preventive care."
+    },
+    {
+      "image": "/images/doctor3.jpg",
+      "name": "Dr. Aakash Singh",
+      "specialization": "Homoeopath",
+      "Year of experience": 5,
+      "city": "Indore",
+      "Rating": 5.7,
+      "description": "Specialist in advanced joint treatments and Homoeopath."
+    },
+    {
+      "image": "/images/doctor4.jpg",
+      "name": "Dr. Neha Patel",
+      "specialization": "Dermatologist",
+      "Year of experience": 9,
+      "city": "Bhopal",
+      "Rating": 4.8,
+      "description": "Expert in cosmetic dermatology and laser-based skin care."
+    },
+    {
+      "image": "/images/doctor5.webp",
+      "name": "Dr. Kanika Sharma",
+      "specialization": "Dermatologist",
+      "Year of experience": 6,
+      "city": "Bhopal",
+      "Rating": 4.5,
+      "description": "Experienced in acne treatment, pigmentation, and cosmetic skin therapy."
+    },
+    {
+      "image": "/images/doctor6.jpg",
+      "name": "Dr. Md Rauf Kallu (RK)",
+      "specialization": "Dermatologist",
+      "Year of experience": 7,
+      "city": "Bhopal",
+      "Rating": 4.6,
+      "description": "Expert in aesthetic dermatology, skin rejuvenation, and scar management."
+    },
+    {
+      "image": "/images/doctor7.avif",
+      "name": "Dr. Rajiya Sultan",
+      "specialization": "General physician",
+      "Year of experience": 11,
+      "city": "Jabalpur",
+      "Rating": 4.9,
+      "description": "Dedicated general physician specializing in family medicine and preventive care."
+    },
+    {
+      "image": "/images/doctor8.jpg",
+      "name": "Dr. Bengali",
+      "specialization": "Aurveda",
+      "Year of experience": 12,
+      "city": "Bhopal",
+      "Rating": 4.8,
+      "description": "Ayurvedic expert providing holistic healing and traditional wellness treatments."
+    }
+  ]
 }

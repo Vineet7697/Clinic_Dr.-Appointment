@@ -50,6 +50,8 @@ const Header = () => {
           <Link to="/clinic" className="hover:text-blue-600 text-black">
             Find Clinic
           </Link>
+
+          
         </div>
       </div>
 
@@ -146,6 +148,8 @@ const Header = () => {
             >
               Find Clinic
             </Link>
+
+           
           </li>
 
           {/* 🔹 For Software (inside mobile menu) */}

@@ -14,14 +14,16 @@ import Cards from "./pages/Cards";
 import AddMember from "./pages/AddMember";
 import DoctorDetailPage from "./pages/DoctorDetailPage";
 import BookAppointmentPage from "./pages/BookAppointmentPage";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          
           <Route path="/" element={<Layout />}>
-            <Route index element={<Doctor />} />
+          <Route index  element={<LandingPage />} />
             <Route path="finddoctor" element={<Doctor />} />
             <Route path="signup" element={<Signup />} />
             <Route path="clinic" element={<Clinic />} />
@@ -35,6 +37,7 @@ const App = () => {
             <Route path="/cards" element={<Cards />} />
             <Route path="addmember" element={<AddMember />} />
             <Route path="/doctor/:id" element={<DoctorDetailPage />} />
+            
             <Route path="/book-appointment/:id" element={<BookAppointmentPage members={[]} />} />
           </Route>
         </Routes>

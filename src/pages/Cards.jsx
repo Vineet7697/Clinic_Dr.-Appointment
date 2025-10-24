@@ -69,7 +69,7 @@ const Cards = () => {
       <Container className=" text-center text-2xl font-bold">
         <Row>
           <Col>
-          <h1 >Our Doctors</h1>
+          <h1>Our Doctors</h1>
           </Col>
         </Row>
       </Container>

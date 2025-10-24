@@ -65,7 +65,7 @@ const Cards = () => {
 };
 
   return (
-    <section className="mt-20 bg-gray-100 py-5 min-h-screen relative w-full">
+    <section className="mt-20 bg-gray-100 py-5 min-h-screen relative w-full  p-10">
       <Container className=" text-center text-2xl font-bold">
         <Row>
           <Col>

@@ -111,10 +111,14 @@ const BookAppointmentPage = ({ members }) => {
         </Form.Group>
 
         <div className="flex justify-center gap-4 mt-6">
-          <Button variant="secondary" onClick={() => navigate(-1)}>
+          <Button variant="secondary" onClick={() => navigate(-1)}
+            className="bg-green-700 rounded-lg p-1 cursor-pointer text-white"
+            >
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleConfirmBooking}>
+          <Button variant="primary" onClick={handleConfirmBooking}
+          className="bg-green-700 rounded-lg p-1  cursor-pointer text-white"
+          >
             Next
           </Button>
         </div>

@@ -35,7 +35,9 @@ const Cards = () => {
 
   // Unique cities & specializations for dropdown
   const uniqueCities = [...new Set(data.doctor.map((doc) => doc.city))];
-  const uniqueDiseases = [...new Set(data.doctor.map((doc) => doc.specialization))];
+  const uniqueDiseases = [
+    ...new Set(data.doctor.map((doc) => doc.specialization)),
+  ];
 
   const filteredCities = uniqueCities.filter((city) =>
     city.toLowerCase().includes(cityQuery.toLowerCase())
@@ -56,27 +58,28 @@ const Cards = () => {
 
   const handleSearch = () => {
     navigate(
-      `/cards?city=${encodeURIComponent(cityQuery)}&disease=${encodeURIComponent(diseaseQuery)}`
+      `/cards?city=${encodeURIComponent(
+        cityQuery
+      )}&disease=${encodeURIComponent(diseaseQuery)}`
     );
   };
 
- const handleViewMore = (doctor) => {
-  navigate(`/doctor/${doctor.id}`); // id use kar rahe hain
-};
+  const handleViewMore = (doctor) => {
+    navigate(`/doctor/${doctor.id}`); // id use kar rahe hain
+  };
 
   return (
     <section className="mt-20 bg-gray-100 py-5 min-h-screen relative w-full  p-10">
       <Container className=" text-center text-2xl font-bold">
         <Row>
           <Col>
-          <h1>Our Doctors</h1>
+            <h1>Our Doctors</h1>
           </Col>
         </Row>
       </Container>
       <Container className="max-w-full">
-
         {/* Search Bars */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mt-6">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-0.5 mt-6">
           {/* City input */}
           <div ref={locationRef} className="relative w-full sm:w-48">
             <div className="flex items-center bg-white text-black px-4 py-2 rounded-lg border w-full">
@@ -106,42 +109,44 @@ const Cards = () => {
           </div>
 
           {/* Disease input */}
-          <div ref={diseaseRef} className="relative w-full sm:w-64 border text-black rounded-lg">
-            <div className="flex items-center bg-white text-black px-4 py-2 rounded-lg w-full">
-              <FaSearch className="mr-2 text-blue-600" />
-              <input
-                type="text"
-                placeholder="Search diseases, doctors..."
-                value={diseaseQuery}
-                onChange={(e) => setDiseaseQuery(e.target.value)}
-                onFocus={() => setShowDiseaseDropdown(true)}
-                className="outline-none bg-transparent w-full"
-              />
+          <div className="flex w-full sm:w-auto">
+            <div ref={diseaseRef} className="relative w-full sm:w-64 md:w-70">
+              <div className="flex items-center bg-white border text-black px-4 py-2 rounded-l-lg w-full">
+                <FaSearch className="mr-2 text-blue-600" />
+                <input
+                  type="text"
+                  placeholder="Search diseases, doctors..."
+                  value={diseaseQuery}
+                  onChange={(e) => setDiseaseQuery(e.target.value)}
+                  onFocus={() => setShowDiseaseDropdown(true)}
+                  className="outline-none bg-transparent w-full"
+                />
+              </div>
+              {showDiseaseDropdown && (
+                <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 mt-1 overflow-y-auto shadow-md z-20 max-h-40">
+                  {filteredDiseases.map((disease) => (
+                    <li
+                      key={disease}
+                      onClick={() => handleDiseaseSelect(disease)}
+                      className="px-4 py-2 cursor-pointer text-black hover:bg-blue-100"
+                    >
+                      {disease}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
-            {showDiseaseDropdown && (
-              <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 mt-1 overflow-y-auto shadow-md z-20 max-h-40">
-                {filteredDiseases.map((disease) => (
-                  <li
-                    key={disease}
-                    onClick={() => handleDiseaseSelect(disease)}
-                    className="px-4 py-2 cursor-pointer text-black hover:bg-blue-100"
-                  >
-                    {disease}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
 
-          {/* Search button */}
-          <div className="flex items-center bg-green-700 px-4 py-2 rounded-r-lg cursor-pointer w-28 sm:w-24 justify-center">
-            <button
-              type="submit"
-              className="text-white font-semibold cursor-pointer"
-              onClick={handleSearch}
-            >
-              Search
-            </button>
+            {/* Search button */}
+            <div className="flex items-center bg-green-700 px-4 py-2 rounded-r-lg cursor-pointer w-28 sm:w-24 justify-center">
+              <button
+                type="submit"
+                className="text-white font-semibold cursor-pointer"
+                onClick={handleSearch}
+              >
+                Search
+              </button>
+            </div>
           </div>
         </div>
 
@@ -149,15 +154,26 @@ const Cards = () => {
         <Row className="g-4 justify-center mt-4">
           {filteredDoctors.length > 0 ? (
             filteredDoctors.map((doctor) => (
-              <Col key={doctor.name} xs={12} sm={6} md={4} lg={3} className="mb-6">
-                <Card className="flex flex-col md:flex-row shadow-md hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden w-[60%] p-4  border-gray-300">
-                  <div className="w-full md:w-[90px] h-[90px] flex-shrink-0 mx-auto md:mx-0">
+              <Col
+                key={doctor.name}
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                className="mb-6 flex justify-center md:justify-start"
+              >
+                <Card className="flex flex-col md:flex-row shadow-md hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden w-[90%] sm:w-[80%] md:w-[60%] p-4 border-gray-300">
+                  <div className="w-full md:w-[90px] h-[90px] flex-shrink-0 flex justify-center md:justify-start mb-3 md:mb-0">
                     <Card.Img
                       variant="left"
                       src={doctor.image}
                       alt={doctor.name}
                       className="object-cover w-full h-full rounded-md border border-gray-300"
-                      style={{ height: "90px", width: "90px", borderRadius: "10px" }}
+                      style={{
+                        height: "90px",
+                        width: "90px",
+                        borderRadius: "10px",
+                      }}
                     />
                   </div>
 
@@ -167,21 +183,22 @@ const Cards = () => {
                     </Card.Title>
 
                     <Card.Subtitle className="text-blue-700 text-sm font-medium mb-1">
-                      {doctor.specialization} • {doctor["Year of experience"]} Years Exp.
+                      {doctor.specialization} • {doctor["Year of experience"]}{" "}
+                      Years Exp.
                     </Card.Subtitle>
 
                     <p className="text-gray-600 text-sm mb-3">
-                      City: {doctor.city}  
+                      City: {doctor.city}
                     </p>
                     <p className="text-gray-600 text-sm mb-3">
                       Rating ⭐ {doctor.Rating}
                     </p>
 
                     <p className="text-gray-600 text-sm mb-3">
-                      Degree: {doctor.Degree} 
+                      Degree: {doctor.Degree}
                     </p>
                     <p className="text-gray-600 text-sm mb-3">
-                     Clinic Fees: {doctor.Clinic_Fees}
+                      Clinic Fees: {doctor.Clinic_Fees}
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-3 justify-center md:justify-start">
@@ -197,7 +214,9 @@ const Cards = () => {
               </Col>
             ))
           ) : (
-            <p className="text-center w-full text-gray-600 mt-4">No doctors found.</p>
+            <p className="text-center w-full text-gray-600 mt-4">
+              No doctors found.
+            </p>
           )}
         </Row>
       </Container>
@@ -206,4 +225,3 @@ const Cards = () => {
 };
 
 export default Cards;
-

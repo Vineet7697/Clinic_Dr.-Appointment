@@ -18,12 +18,6 @@ const DoctorDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4 md:px-20 mt-20">
-      <Button
-        className="mb-6 bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded-lg"
-        onClick={() => navigate(-1)}
-      >
-        ← Back
-      </Button>
 
       <div className="bg-white rounded-2xl shadow-xl p-6 md:flex md:gap-8">
         <img
@@ -41,11 +35,13 @@ const DoctorDetailPage = () => {
           </p>
           <p className="text-gray-600 mb-2">City: {doctor.city}</p>
           <p className="text-gray-600 mb-4">Rating ⭐ {doctor.Rating}</p>
+          <p className="text-gray-600 mb-4">Degree:  {doctor.Degree}</p>
+          <p className="text-gray-600 mb-4">Clinic_Fees: {doctor.Clinic_Fees}</p>
           <p className="text-gray-700 mb-6">{doctor.description}</p>
 
           <div className="flex flex-col md:flex-row gap-4">
             <Button
-              className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded-lg"
+              className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded-lg cursor-pointer"
               onClick={() => navigate(`/book-appointment/${doctor.id}`)}
             >
               Book Appointment

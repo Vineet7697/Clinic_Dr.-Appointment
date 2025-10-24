@@ -1,3 +1,6 @@
+
+
+
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
@@ -30,41 +33,46 @@ const BookAppointmentPage = ({ members }) => {
   }
 
   const handleSaveMember = () => {
-  const newErrors = {};
-  if (!memberData.name) newErrors.name = 'Name is required';
-  if (!memberData.age) newErrors.age = 'Age is required';
-  if (!memberData.mobile) newErrors.mobile = 'Mobile is required';
-  if (!memberData.aadhar) newErrors.aadhar = 'Aadhar is required';
+    const newErrors = {};
+    if (!memberData.name) newErrors.name = "Name is required";
+    if (!memberData.age) newErrors.age = "Age is required";
+    if (!memberData.mobile) newErrors.mobile = "Mobile is required";
+    if (!memberData.aadhar) newErrors.aadhar = "Aadhar is required";
 
-  if (Object.keys(newErrors).length > 0) {
-    setErrors(newErrors);
-    return;
-  }
+    // ✅ Extra validation for numbers only
+    if (memberData.mobile && !/^\d{10}$/.test(memberData.mobile)) {
+      newErrors.mobile = "Enter valid 10-digit mobile number";
+    }
+    if (memberData.aadhar && !/^\d{12}$/.test(memberData.aadhar)) {
+      newErrors.aadhar = "Enter valid 12-digit Aadhaar number";
+    }
+    if (memberData.age && !/^\d+$/.test(memberData.age)) {
+      newErrors.age = "Age must be a valid number";
+    }
 
-  // Add new member to membersList
-  setMembersList([...membersList, { ...memberData }]);
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
 
-  // Reset form fields
-  setMemberData({
-    name: '',
-    age: '',
-    mobile: '',
-    aadhar: '',
-  });
+    setMembersList([...membersList, { ...memberData }]);
+    setMemberData({
+      name: "",
+      age: "",
+      mobile: "",
+      aadhar: "",
+    });
+    setErrors({});
+    alert("Member added successfully!");
+  };
 
-  setErrors({});
-  alert('Member added successfully!');
-};
   const handleConfirmBooking = () => {
     alert("Appointment confirmed!");
-    navigate(-1); // back to Doctor Detail Page
+    navigate(-1);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4 md:px-20">
-      <Button variant="secondary" onClick={() => navigate(-1)} className="mb-6">
-        ← Back
-      </Button>
+    <div className="min-h-screen bg-gray-50 py-10 px-4 md:px-20 mt-20">
 
       <h3 className="text-2xl font-semibold text-center mb-6">
         Book Appointment for {doctor.name}
@@ -74,22 +82,21 @@ const BookAppointmentPage = ({ members }) => {
         <Form.Group className="mb-3 text-center">
           <Form.Label>Select Appointment For</Form.Label>
           <div className="flex flex-col items-center mt-3 gap-2">
-            <Form.Select
-              value={appointmentFor}
-              onChange={(e) => setAppointmentFor(e.target.value)}
-              className="w-40 text-center"
-            >
-              <option value="myself">Myself</option>
-              <option value="other">Other</option>
-              {members?.map((member, idx) => (
-                <option key={idx} value={member.name || member}>
-                  {member.name || member}
-                </option>
-              ))}
-            </Form.Select>
+           <Form.Select
+  value={appointmentFor}
+  onChange={(e) => setAppointmentFor(e.target.value)}
+  className="w-40 text-center"
+>
+  <option value="myself">Myself</option>
+  <option value="other">Other</option>
 
-            
-
+  {/* ✅ Updated to use membersList */}
+  {membersList.map((member, idx) => (
+    <option key={idx} value={member.name}>
+      {member.name}
+    </option>
+  ))}
+</Form.Select>
 
             {appointmentFor === "other" && (
               <Button
@@ -133,7 +140,9 @@ const BookAppointmentPage = ({ members }) => {
                 className="border border-gray-400 rounded-md px-3 py-2 w-full"
               />
               <Form.Control.Feedback type="invalid">
-                {errors.name}
+                   {errors.name && (
+                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+              )}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -142,16 +151,22 @@ const BookAppointmentPage = ({ members }) => {
                 Age*
               </Form.Label>
               <Form.Control
-                type="number"
+                type="text"
+                maxLength={3}
                 value={memberData.age}
-                onChange={(e) =>
-                  setMemberData({ ...memberData, age: e.target.value })
-                }
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^\d*$/.test(value)) {
+                    setMemberData({ ...memberData, age: value });
+                  }
+                }}
                 isInvalid={!!errors.age}
                 className="border border-gray-400 rounded-md px-3 py-2 w-full"
               />
               <Form.Control.Feedback type="invalid">
-                {errors.age}
+                {errors.age && (
+                <p className="text-red-500 text-xs mt-1">{errors.age}</p>
+              )}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -163,14 +178,19 @@ const BookAppointmentPage = ({ members }) => {
                 type="text"
                 maxLength={10}
                 value={memberData.mobile}
-                onChange={(e) =>
-                  setMemberData({ ...memberData, mobile: e.target.value })
-                }
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^\d*$/.test(value)) {
+                    setMemberData({ ...memberData, mobile: value });
+                  }
+                }}
                 isInvalid={!!errors.mobile}
                 className="border border-gray-400 rounded-md px-3 py-2 w-full"
               />
               <Form.Control.Feedback type="invalid">
-                {errors.mobile}
+                 {errors.mobile && (
+                <p className="text-red-500 text-xs mt-1">{errors.mobile}</p>
+              )}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -182,25 +202,34 @@ const BookAppointmentPage = ({ members }) => {
                 type="text"
                 maxLength={12}
                 value={memberData.aadhar}
-                onChange={(e) =>
-                  setMemberData({ ...memberData, aadhar: e.target.value })
-                }
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^\d*$/.test(value)) {
+                    setMemberData({ ...memberData, aadhar: value });
+                  }
+                }}
                 isInvalid={!!errors.aadhar}
                 className="border border-gray-400 rounded-md px-3 py-2 w-full"
               />
               <Form.Control.Feedback type="invalid">
-                {errors.aadhar}
+                   {errors.aadhar && (
+                <p className="text-red-500 text-xs mt-1">{errors.aadhar}</p>
+              )}
               </Form.Control.Feedback>
             </Form.Group>
 
-            <div className="flex justify-end gap-3 mt-4">
+            <div className="flex justify-end gap-3 mt-4 ">
               <Button
                 variant="secondary"
                 onClick={() => setShowAddMember(false)}
+                className="bg-green-700 rounded-lg text-sm p-2 text-white cursor-pointer"
               >
                 Cancel
               </Button>
-              <Button variant="success" onClick={handleSaveMember}>
+              <Button variant="success" onClick={handleSaveMember}
+              className="bg-green-700 rounded-lg text-sm p-2 text-white cursor-pointer"
+              >
+                
                 Save
               </Button>
             </div>

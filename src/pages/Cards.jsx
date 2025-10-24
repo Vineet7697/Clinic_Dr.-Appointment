@@ -106,8 +106,8 @@ const Cards = () => {
           </div>
 
           {/* Disease input */}
-          <div ref={diseaseRef} className="relative w-full sm:w-64">
-            <div className="flex items-center bg-white text-black px-4 py-2 rounded-l-lg w-full">
+          <div ref={diseaseRef} className="relative w-full sm:w-64 border text-black rounded-lg">
+            <div className="flex items-center bg-white text-black px-4 py-2 rounded-lg w-full">
               <FaSearch className="mr-2 text-blue-600" />
               <input
                 type="text"
@@ -171,11 +171,17 @@ const Cards = () => {
                     </Card.Subtitle>
 
                     <p className="text-gray-600 text-sm mb-3">
-                      City: {doctor.city} | Rating ⭐ {doctor.Rating}
+                      City: {doctor.city}  
+                    </p>
+                    <p className="text-gray-600 text-sm mb-3">
+                      Rating ⭐ {doctor.Rating}
                     </p>
 
                     <p className="text-gray-600 text-sm mb-3">
-                      Degree: {doctor.Degree} | Clinic Fees {doctor.Clinic_Fees}
+                      Degree: {doctor.Degree} 
+                    </p>
+                    <p className="text-gray-600 text-sm mb-3">
+                     Clinic Fees: {doctor.Clinic_Fees}
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-3 justify-center md:justify-start">

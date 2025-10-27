@@ -1,0 +1,121 @@
+{
+  "cities": [
+    { "id": 1, "name": "Delhi" },
+    { "id": 2, "name": "Mumbai" },
+    { "id": 3, "name": "Bhopal" },
+    { "id": 4, "name": "Indore" },
+    { "id": 5, "name": "Jhansi" },
+    { "id": 6, "name": "Jabalpur" }
+  ],
+  "diseases": [
+    { "id": 1, "name": "Dermatologist" },
+    { "id": 2, "name": "Neurology" },
+    { "id": 3, "name": "Pediatrician" },
+    { "id": 4, "name": "General physician" },
+    { "id": 5, "name": "Homoeopath" },
+    { "id": 6, "name": "Aurveda" },
+    { "id": 7, "name": "Cardiology" }
+  ],
+
+  "doctor": [
+    {
+      "id": 1,
+      "image": "/images/doctor1.jpg",
+      "name": "Dr. Rohan Sharma",
+      "specialization": "Cardiology",
+      "Degree": "MD Dermatologist,MBBS",
+      "Year of experience": 10,
+      "city": "Jhansi",
+      "Rating": 4.9,
+      "Clinic_Fees":"500 fee",
+      "description": "Expert in cardiology with 10+ years of experience in patient care."
+    },
+    {
+      "id": 2,
+      "image": "/images/doctor2.avif",
+      "name": "Dr. Priya Verma",
+      "specialization": "Pediatrician",
+      "Degree": "MD Dermatologist,MBBS",
+      "Year of experience": 8,
+      "city": "Delhi",
+      "Rating": 4.7,
+      "Clinic_Fees":"500 fee",
+      "description": "Pediatrician with focus on child wellness and preventive care."
+    },
+    {
+      "id": 3,
+      "image": "/images/doctor3.jpg",
+      "name": "Dr. Aakash Singh",
+      "specialization": "Homoeopath",
+      "Degree": "MD Dermatologist,MBBS",
+      "Year of experience": 5,
+      "city": "Indore",
+      "Rating": 5.7,
+      "Clinic_Fees":"500 fee",
+      "description": "Specialist in advanced joint treatments and Homoeopath."
+    },
+    {
+      "id": 4,
+      "image": "/images/doctor4.jpg",
+      "name": "Dr. Kanika Sharma",
+      "specialization": "Dermatologist",
+      "Degree": "MD Dermatologist,MBBS",
+      "Year of experience": 5,
+      "city": "Bhopal",
+      "Rating": 5.7,
+      "Clinic_Fees":"500 fee",
+      "description": "Specialist in advanced joint treatments and Homoeopath."
+    },
+    {
+      "id": 5,
+      "image": "/images/doctor5.webp",
+      "name": "Dr. Priyanka Patel",
+      "specialization": "Dermatologist",
+      "Degree": "MD Dermatologist,MBBS",
+      "Year of experience": 5,
+      "city": "Bhopal",
+      "Rating": 5.7,
+      "Clinic_Fees":"500 fee",
+      "description": "Specialist in advanced joint treatments and Homoeopath."
+    },
+    {
+      "id": 6,
+      "image": "/images/doctor6.jpg",
+      "name": "Dr. Md Rauf Kallu (RK)",
+      "specialization": "Dermatologist",
+      "Degree": "MD Dermatologist,MBBS",
+      "Year of experience": 5,
+      "city": "Bhopal",
+      "Rating": 5.7,
+      "Clinic_Fees":"500 fee",
+      "description": "Specialist in advanced joint treatments and Homoeopath."
+    },
+    {
+      "id": 7,
+      "image": "/images/doctor7.avif",
+      "name": "Dr. Rajiya Sulatan",
+      "specialization": "Homoeopath",
+      "Degree": "MD Dermatologist,MBBS",
+      "Year of experience": 5,
+      "city": "Bhopal",
+      "Rating": 5.7,
+      "Clinic_Fees":"500 fee",
+      "description": "Specialist in advanced joint treatments and Homoeopath."
+    },
+    {
+      "id": 8,
+      "image": "/images/doctor8.jpg",
+      "name": "Dr. Bengali",
+      "specialization": "Homoeopath",
+      "Degree": "MD Dermatologist,MBBS",
+      "Year of experience": 5,
+      "city": "Indore",
+      "Rating": 5.7,
+      "Clinic_Fees":"500 fee",
+      "description": "Specialist in advanced joint treatments and Homoeopath."
+    }
+      ]
+}
+
+
+

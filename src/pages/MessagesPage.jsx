@@ -50,15 +50,8 @@ const MessagesPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-white to-blue-50 mt-20">
+    <div className="flex min-h-screen bg-gradient-to-br from-white to-blue-50 mt-4">
       {/* ✅ Sidebar Integration */}
-      <Sidebar
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        isOpen={sidebarOpen}
-        setIsOpen={setSidebarOpen}
-      />
-
       {/* ✅ Main Content Area */}
       <div className="flex-1 p-6">
         <div className="max-w-7xl mx-auto">

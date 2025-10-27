@@ -71,7 +71,6 @@ const Footer = () => {
 
       {/* BOTTOM SECTION */}
       <div className="flex flex-col items-center justify-center text-center gap-3 px-4">
-        <img src="/images/yo doctor 1.png" alt="Logo" className="h-10" />
         <p className="text-[#B8BBD9] text-sm">
           Copyright &copy; 2025, <span className="font-semibold">Yo Doctor</span>. All rights reserved.
         </p>

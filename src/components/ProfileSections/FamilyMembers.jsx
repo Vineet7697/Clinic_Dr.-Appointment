@@ -9,7 +9,7 @@ const FamilyMembers = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6">
+    <div className="bg-white rounded-2xl shadow-md p-6 mt-20">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-xl font-semibold">Family Members</h3>
         <button className="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600">

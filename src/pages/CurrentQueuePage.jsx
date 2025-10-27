@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Sidebar from "../components/UI/Sidebar";
 
 const CurrentQueuePage = () => {
   // Mock Queue Data
@@ -37,36 +36,11 @@ const CurrentQueuePage = () => {
   const activePatient = patients.find((p) => p.status === "Consulting");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 flex mt-20">
-      {/* Sidebar */}
-      <Sidebar
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        isOpen={isSidebarOpen}
-        setIsOpen={setIsSidebarOpen}
-      />
+    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 flex mt-4">
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <header className="bg-teal-500 text-white px-6 py-4 flex items-center justify-between shadow-md">
-          <div className="flex items-center space-x-3">
-            <button
-              className="md:hidden text-2xl"
-              onClick={() => setIsSidebarOpen(true)}
-            >
-              ☰
-            </button>
-            <h1 className="font-semibold text-lg">Welcome, Dr. Sharma</h1>
-          </div>
-          <div className="flex items-center space-x-4">
-            <span className="text-xl cursor-pointer">🔔</span>
-            <span className="text-xl cursor-pointer">💬</span>
-            <span className="w-8 h-8 bg-white rounded-full text-teal-600 flex items-center justify-center font-semibold">
-              DS
-            </span>
-          </div>
-        </header>
+        
 
         {/* Main Page Content */}
         <main className="p-6 flex-1 overflow-y-auto">

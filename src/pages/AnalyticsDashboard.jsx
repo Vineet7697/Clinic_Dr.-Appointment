@@ -17,22 +17,14 @@ const AnalyticsDashboard = () => {
     new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(n);
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-white to-blue-50 mt-20">
-      {/* ✅ Sidebar */}
-      <Sidebar
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        isOpen={sidebarOpen}
-        setIsOpen={setSidebarOpen}
-      />
-
+    <div className="flex min-h-screen bg-gradient-to-br from-white to-blue-50 mt-4">
       {/* ✅ Main Content */}
       <div className="flex-1 p-6">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <header className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-4">
-              <div className="text-teal-600 font-bold text-xl">Yo Doctor</div>
+              {/* <div className="text-teal-600 font-bold text-xl">Yo Doctor</div> */}
               <div>
                 <h1 className="text-3xl font-bold text-gray-800">
                   Analytics Dashboard

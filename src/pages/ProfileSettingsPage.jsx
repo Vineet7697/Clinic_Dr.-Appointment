@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Sidebar from "../components/UI/Sidebar";
 import {
   FaClinicMedical,
   FaPhoneAlt,
@@ -42,38 +41,13 @@ const ProfileSettingsPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-white to-blue-50 mt-20">
-      {/* Sidebar */}
-      <Sidebar
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        isOpen={sidebarOpen}
-        setIsOpen={setSidebarOpen}
-      />
+    <div className="flex min-h-screen bg-gradient-to-br from-white to-blue-50 mt-2">
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <header className="bg-white shadow-sm p-4 flex justify-between items-center sticky top-0 z-10">
-          <div className="flex items-center gap-2">
-            <button
-              className="md:hidden text-2xl text-gray-600"
-              onClick={() => setSidebarOpen(true)}
-            >
-              ☰
-            </button>
-            <h2 className="text-xl font-semibold text-gray-800">Doctor Dashboard</h2>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center text-white font-semibold">
-              DR
-            </div>
-            <span className="text-gray-700 font-medium">Dr. Smith</span>
-          </div>
-        </header>
 
         {/* Main Form */}
-        <main className="flex-1 p-6 overflow-y-auto">
+        <main className="flex-1 p-4 overflow-y-auto">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl shadow-md p-8">
               <h1 className="text-3xl font-bold text-gray-800 mb-2">

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Sidebar from "../components/UI/Sidebar";
 import { Outlet } from "react-router-dom";
+import Sidebar from "../components/UI/Sidebar";
 
-const ClientDashboardPage = () => {
+const ClientDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeNav, setActiveNav] = useState("profile");
+  const [activeNav, setActiveNav] = useState("dashboard");
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -17,11 +17,12 @@ const ClientDashboardPage = () => {
       />
 
       {/* Page Content */}
-      <main className="flex-1 p-6 mt-20">
-        <Outlet /> {/* 👈 Sidebar click hone par yahan content change hoga */}
+      <main className="flex-1 p-6">
+        <Outlet /> {/* 👈 Ye important hai nested routes dikhane ke liye */}
       </main>
     </div>
   );
 };
 
-export default ClientDashboardPage;
+export default ClientDashboard;
+

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../UI/Sidebar";
 const AppointmentHistory = () => {
   const [appointments, setAppointments] = useState([]);
 
@@ -9,7 +8,7 @@ const AppointmentHistory = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6">
+    <div className="bg-white rounded-2xl shadow-md p-6 mt-20">
       <h3 className="text-xl font-semibold mb-4">Appointment History</h3>
       {appointments.length === 0 ? (
         <p className="text-gray-500 text-center py-6">No appointments yet</p>

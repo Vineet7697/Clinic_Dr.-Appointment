@@ -38,19 +38,10 @@ const PatientListPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 flex mt-20">
-      <Sidebar
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        isOpen={sidebarOpen}
-        setIsOpen={setSidebarOpen}
-      />
+    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 flex mt-4">
 
       <div className="flex-1 flex flex-col">
-        <header className="bg-teal-500 text-white px-6 py-4 flex items-center justify-between">
-          <button className="md:hidden" onClick={() => setSidebarOpen(!sidebarOpen)}>☰</button>
-          <h1 className="font-semibold text-lg">Welcome, Dr. Sharma</h1>
-        </header>
+        
 
         <main className="p-6 flex-1 overflow-x-auto">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Today's Patients</h2>

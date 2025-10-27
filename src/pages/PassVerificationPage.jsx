@@ -26,14 +26,7 @@ const PassVerificationPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-white to-blue-50 mt-20">
-      {/* Sidebar */}
-      <Sidebar
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-        isOpen={sidebarOpen}
-        setIsOpen={setSidebarOpen}
-      />
+    <div className="flex min-h-screen bg-gradient-to-br from-white to-blue-50 ">
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center p-6">
@@ -44,7 +37,7 @@ const PassVerificationPage = () => {
           Scan patient QR code or enter their token ID to verify.
         </p>
 
-        <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-5xl">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-8xl">
           <div className="text-teal-500 font-bold text-xl mb-6">Yo Doctor</div>
 
           <div className="md:flex md:space-x-8">

@@ -15,7 +15,7 @@ const ClientHomePage = () => {
     {
       label: "Search Doctor",
       icon: <FaSearch className="text-teal-500 text-5xl mb-4" />,
-      action: () => navigate("/cards"),
+      action: () => navigate("/searchdoctorpage"),
     },
     {
       label: "Scan QR",

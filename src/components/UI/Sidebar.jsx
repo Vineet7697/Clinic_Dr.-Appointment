@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   const role = loggedInUser?.role || "client"; // Default role: client
@@ -20,15 +20,31 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
     { key: "family", label: "Family Members", icon: "👨‍👩‍👧" },
     { key: "settings", label: "Settings", icon: "⚙" },
     { key: "edit", label: "Edit Profile", icon: "✏️" },
+
+
+    
   ];
+
+
+
+  const navigate = useNavigate();
+
 
   const navItems = role === "doctor" ? doctorNav : clientNav;
 
   // ✅ Internal navigation only (no page reload)
   const handleNavClick = (item) => {
-    if (setActiveNav) setActiveNav(item.key);
-    if (setIsOpen) setIsOpen(false);
-  };
+  if (setActiveNav) setActiveNav(item.key);
+  if (setIsOpen) setIsOpen(false);
+
+  // ✅ Doctor ke liye navigate karega
+  if (role === "doctor") {
+  navigate(`/doctordashboard/${item.key}`); // ✅ Nested route
+} else {
+  navigate(`/client/${item.key}`); // ✅ Client ke liye
+}
+};
+
 
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser");
@@ -38,7 +54,9 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
   return (
     <>
       {/* 🖥️ Desktop Sidebar */}
-      <aside className="hidden md:block w-64 bg-white rounded-2xl shadow-md p-4 sticky top-8 self-start mt-20 h-[80vh]">
+      
+      <aside className="hidden md:block w-64 bg-white rounded-2xl shadow-2xl p-4 sticky top-8 self-start mt-20 h-[80vh]">
+        
         <div className="mb-6 text-xl font-bold text-teal-600 text-center">
           Yo Doctor
         </div>

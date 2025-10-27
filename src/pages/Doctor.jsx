@@ -4,7 +4,6 @@ import Webcam from "react-webcam";
 import QrScanner from "qr-scanner";
 import Typewriter from "typewriter-effect";
 import { useNavigate } from "react-router-dom";
-import Cards from "./Cards";
 import {
   FaSearch,
   FaMapMarkerAlt,

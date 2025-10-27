@@ -160,53 +160,73 @@ const Cards = () => {
                 sm={6}
                 md={4}
                 lg={3}
-                className="mb-6 flex justify-center md:justify-start"
+                 className="flex justify-center"
               >
-                <Card className="flex flex-col md:flex-row shadow-md hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden w-[90%] sm:w-[80%] md:w-[60%] p-4 border-gray-300">
-                  <div className="w-full md:w-[90px] h-[90px] flex-shrink-0 flex justify-center md:justify-start mb-3 md:mb-0">
+                <Card className="flex flex-col md:flex-row shadow-md hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden w-[90%] sm:w-[80%] md:w-[60%] p-4 border-gray-300 justify-around">
+                  {/* Left Side: Image + View Profile */}
+                  <div className="flex flex-col items-start mb-3 md:mb-0">
                     <Card.Img
-                      variant="left"
+                      variant="top"
                       src={doctor.image}
                       alt={doctor.name}
-                      className="object-cover w-full h-full rounded-md border border-gray-300"
+                      className="object-cover rounded-md border border-gray-300 mb-3"
                       style={{
-                        height: "90px",
-                        width: "90px",
+                        height: "120px",
+                        width: "120px",
                         borderRadius: "10px",
+                        objectFit: "cover",
                       }}
                     />
+                    <Button
+                      className="bg-gray-600 hover:bg-gray-700 text-white mt-10 px-4 py-2 rounded-lg cursor-pointer text-sm "
+                      onClick={() => handleViewMore(doctor)}
+                    >
+                      View Profile
+                    </Button>
                   </div>
 
-                  <Card.Body className="flex flex-col w-full md:pl-4 mt-4 md:mt-0 text-center md:text-left">
-                    <Card.Title className="text-lg font-bold text-gray-900 mb-1">
-                      {doctor.name}
-                    </Card.Title>
+                  {/* Right Side: Doctor Info + Buttons */}
+                  <Card.Body className="flex flex-row justify-between md:w-[80%] text-center md:text-left">
+                    <div>
+                      <Card.Title className="text-lg font-bold text-gray-900 mb-1">
+                        {doctor.name}
+                      </Card.Title>
+                      <Card.Subtitle className="text-blue-700 text-sm font-medium mb-1">
+                        {doctor.specialization} • {doctor["Year of experience"]}{" "}
+                        Years Exp.
+                      </Card.Subtitle>
 
-                    <Card.Subtitle className="text-blue-700 text-sm font-medium mb-1">
-                      {doctor.specialization} • {doctor["Year of experience"]}{" "}
-                      Years Exp.
-                    </Card.Subtitle>
+                      <p className="text-gray-600 text-sm mb-3">
+                        City: {doctor.city}
+                      </p>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Rating ⭐ {doctor.Rating}
+                      </p>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Degree: {doctor.Degree}
+                      </p>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Clinic Fees: {doctor.Clinic_Fees}
+                      </p>
+                      <p className="text-gray-600 text-sm mb-3">
+                        {doctor.description}
+                      </p>
+                    </div>
 
-                    <p className="text-gray-600 text-sm mb-3">
-                      City: {doctor.city}
-                    </p>
-                    <p className="text-gray-600 text-sm mb-3">
-                      Rating ⭐ {doctor.Rating}
-                    </p>
-
-                    <p className="text-gray-600 text-sm mb-3">
-                      Degree: {doctor.Degree}
-                    </p>
-                    <p className="text-gray-600 text-sm mb-3">
-                      Clinic Fees: {doctor.Clinic_Fees}
-                    </p>
-
-                    <div className="flex flex-col md:flex-row gap-3 justify-center md:justify-start">
+                    {/* Buttons aligned to the right */}
+                    <div className="flex flex-col justify-center gap-3   ">
                       <Button
-                        className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg cursor-pointer"
-                        onClick={() => handleViewMore(doctor)}
+                        className="bg-blue-700 hover:bg-blue-800 text-white py-2 px-3 rounded-lg cursor-pointer text-sm whitespace-nowrap"
+                         onClick={() => navigate(`/bookappointmentpage2`)} 
                       >
-                        View More
+                        Book Appointment
+                      </Button>
+
+                      <Button
+                        className="bg-green-700 hover:bg-green-800 text-white px-5 py-2 rounded-lg cursor-pointer text-sm"
+                        onClick={() => navigate(`/contact-doctor/${doctor.id}`)}
+                      >
+                        Contact
                       </Button>
                     </div>
                   </Card.Body>

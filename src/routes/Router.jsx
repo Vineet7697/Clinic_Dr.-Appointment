@@ -62,7 +62,9 @@ const Router = () => {
           <Route path="clienthomepage" element={<ClientHomePage />} />
           <Route path="searchdoctorpage" element={<SearchDoctorPage />} />
           <Route path="doctorprofilemodal" element={<DoctorProfileModal />} />
-          <Route path="bookappointmentpage2" element={<BookAppointmentPage2 />} />
+       
+<Route path="/bookappointmentpage2" element={<BookAppointmentPage2 />} />
+{/* <Route path="/bookappointmentpage2/:id" element={<BookAppointmentPage2 />} /> */}
           <Route path="patientqueuepage" element={<PatientQueuePage />} />
           <Route path="clientprofilepage" element={<ClientProfilePage />} />
           <Route path="doctorloginpage" element={<DoctorLoginPage />} />
@@ -88,14 +90,6 @@ const Router = () => {
 
           {/* Other Common Routes */}
           <Route path="dashboardheader" element={<DashboardHeader />} />
-          {/* <Route path="clinicregistrationpage" element={<ClinicRegistrationPage />} />
-          <Route path="logoutmodal" element={<LogoutModal />} />
-          <Route path="appointmenthistory" element={<AppointmentHistory />} />
-          <Route path="familymembers" element={<FamilyMembers />} />
-          <Route path="clientsettings" element={<SettingsSection />} />
-          <Route path="editprofile" element={<EditSection />} /> */}
-
-
           <Route path="/client" element={<ClientDashboard />}>
           <Route index element={<ClientProfilePage />} />
           <Route path="profile" element={<ClientProfilePage />} />

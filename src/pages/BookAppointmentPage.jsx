@@ -112,12 +112,12 @@ const BookAppointmentPage = ({ members }) => {
 
         <div className="flex justify-center gap-4 mt-6">
           <Button variant="secondary" onClick={() => navigate(-1)}
-            className="bg-green-700 rounded-lg p-1 cursor-pointer text-white"
+            className="  cursor-pointer hover:text-blue-600"
             >
             Cancel
           </Button>
           <Button variant="primary" onClick={handleConfirmBooking}
-          className="bg-green-700 rounded-lg p-1  cursor-pointer text-white"
+          className=" cursor-pointer  hover:text-blue-600"
           >
             Next
           </Button>

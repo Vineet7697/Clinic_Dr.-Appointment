@@ -192,3 +192,31 @@ export const validateDoctorRegistration = (values) => {
 
   return errors;
 };
+
+
+
+
+
+// Book Appoinmentpage validation
+
+export const validateFamilyMember = (member) => {
+  const errors = {};
+
+  if (!member.name.trim()) {
+    errors.name = "Name is required";
+  }
+
+  if (!member.age || isNaN(member.age) || member.age <= 0) {
+    errors.age = "Please enter a valid age";
+  }
+
+  if (!member.Aadhar || !/^\d{12}$/.test(member.Aadhar)) {
+    errors.Aadhar = "Aadhar must be a 12-digit number";
+  }
+
+  if (!member.MobileNumber || !/^[6-9]\d{9}$/.test(member.MobileNumber)) {
+    errors.MobileNumber = "Enter a valid 10-digit mobile number";
+  }
+
+  return errors;
+};

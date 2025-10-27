@@ -1,15 +1,22 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { UserCircle } from "lucide-react";
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false); // Hamburger state
-  const [profileOpen, setProfileOpen] = useState(false); // Profile dropdown state
+  const [menuOpen, setMenuOpen] = useState(false); // Mobile menu state
+  const [profileOpen, setProfileOpen] = useState(false); // Profile dropdown
   const navigate = useNavigate();
 
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
+  // 🔹 Navigate Function
+  const handleNavigate = (path) => {
+    setProfileOpen(false);
+    navigate(path);
+  };
+
+  // 🔹 Logout Function
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser");
     setProfileOpen(false);
@@ -51,7 +58,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* RIGHT SECTION (Desktop only) */}
+      {/* RIGHT SECTION */}
       <div className="flex items-center gap-7 relative">
         {loggedInUser && (
           <div className="relative">
@@ -62,14 +69,42 @@ const Header = () => {
               <UserCircle size={30} className="text-gray-700" />
             </button>
 
+            {/* Profile Dropdown */}
             {profileOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg border border-gray-100 z-20">
                 <ul className="py-2 text-gray-700">
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => handleNavigate("/clientprofilepage")}
+                  >
                     My Profile
                   </li>
                   <li
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => handleNavigate("/appointmenthistory")}
+                  >
+                    Appointment History
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => handleNavigate("/familymembers")}
+                  >
+                    Family Members
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => handleNavigate("/settings")}
+                  >
+                    Settings
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => handleNavigate("/editprofile")}
+                  >
+                    Edit
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-600 font-medium"
                     onClick={handleLogout}
                   >
                     Logout

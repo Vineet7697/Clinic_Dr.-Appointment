@@ -7,7 +7,7 @@ const DoctorLoginPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
-  // single state for form values
+  // Form values
   const [formValues, setFormValues] = useState({ doctorId: "", password: "" });
   const [errors, setErrors] = useState({});
 
@@ -17,7 +17,7 @@ const DoctorLoginPage = () => {
     const updatedValues = { ...formValues, [name]: value };
     setFormValues(updatedValues);
 
-    // Real-time validation for this field
+    // Real-time validation
     const fieldError = validateDoctorLogin(updatedValues);
     setErrors({ ...errors, [name]: fieldError[name] });
   };
@@ -39,8 +39,20 @@ const DoctorLoginPage = () => {
       );
 
       if (doctor) {
-        console.log("Login successful", doctor);
-        navigate("/doctordashboard"); // ya jis page pe login ke baad jana hai
+        console.log("✅ Login successful", doctor);
+
+        // ---------------- 👇 Add this block 👇 ----------------
+        // Save logged in doctor info + role in localStorage
+        localStorage.setItem(
+          "loggedInUser",
+          JSON.stringify({
+            name: doctor.name || "Dr. Sharma", // fallback name
+            role: "doctor", // role set for sidebar
+          })
+        );
+        // ------------------------------------------------------
+
+        navigate("/doctordashboard"); // redirect after login
       } else {
         setErrors({
           ...errors,
@@ -76,8 +88,8 @@ const DoctorLoginPage = () => {
                 type="text"
                 id="doctorId"
                 name="doctorId"
-                value={formValues.doctorId} // bind with formValues
-                onChange={handleChange} // use handleChange
+                value={formValues.doctorId}
+                onChange={handleChange}
                 placeholder="Enter your Doctor ID"
                 className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 ${
                   errors.doctorId
@@ -90,7 +102,6 @@ const DoctorLoginPage = () => {
               )}
             </div>
 
-            {/* Password */}
             {/* Password */}
             <div>
               <label
@@ -157,7 +168,9 @@ const DoctorLoginPage = () => {
         {/* Right Section */}
         <div className="hidden md:flex w-1/2 bg-gradient-to-br from-teal-100 to-cyan-100 items-center justify-center">
           <div className="w-3/4 h-3/4 flex items-center justify-center">
-            <div className="w-full h-full bg-white rounded-2xl shadow-inner flex items-center justify-center border border-teal-200"></div>
+            <div className="w-full h-full bg-white rounded-2xl shadow-inner flex items-center justify-center border border-teal-200">
+              {/* Optional: you can add doctor illustration here */}
+            </div>
           </div>
         </div>
       </div>

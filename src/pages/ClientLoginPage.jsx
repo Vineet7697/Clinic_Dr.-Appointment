@@ -12,17 +12,14 @@ const ClientLoginPage = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  // Placeholder: Forgot Password
   const handleForgotPassword = () => {
     alert("Forgot Password clicked! (frontend simulation only)");
   };
 
-  // Placeholder: Google Login
   const handleGoogleLogin = () => {
     alert("Login with Google clicked! (frontend simulation only)");
   };
 
-  // Email / Mobile change
   const handleEmailChange = (e) => {
     let value = e.target.value;
     if (/^\d*$/.test(value) && value.length > 10) value = value.slice(0, 10);
@@ -31,18 +28,27 @@ const ClientLoginPage = () => {
     setErrors(validateLoginForm({ emailPhone: value, password, loginWithOtp }));
   };
 
-  // Password change
   const handlePasswordChange = (e) => {
     const value = e.target.value;
     setPassword(value);
 
-    setErrors(validateLoginForm({ emailPhone: emailOrMobile, password: value, loginWithOtp }));
+    setErrors(
+      validateLoginForm({
+        emailPhone: emailOrMobile,
+        password: value,
+        loginWithOtp,
+      })
+    );
   };
 
-  // Form submit
+  // ---------------- Handle Login ----------------
   const handleLogin = (e) => {
     e.preventDefault();
-    const validationErrors = validateLoginForm({ emailPhone: emailOrMobile, password, loginWithOtp });
+    const validationErrors = validateLoginForm({
+      emailPhone: emailOrMobile,
+      password,
+      loginWithOtp,
+    });
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
@@ -54,7 +60,18 @@ const ClientLoginPage = () => {
 
       if (userFound) {
         alert("Login successful!");
-        localStorage.setItem("loggedInUser", JSON.stringify(userFound));
+
+        // ✅ Store logged-in user in localStorage
+        localStorage.setItem(
+          "loggedInUser",
+          JSON.stringify({
+            name: "Vineet",
+            email: "vineet@gmail.com",
+            phone: "9876543210",
+            role: "client",
+          })
+        );
+
         navigate("/clienthomepage");
       } else {
         alert("Invalid email or password!");
@@ -66,14 +83,21 @@ const ClientLoginPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-blue-50 px-4 py-12">
       <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md p-8 md:p-12">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Login to Yo Doctor</h1>
-          <p className="text-gray-500 mt-2 text-sm">Enter your credentials to continue</p>
+          <h1 className="text-3xl font-bold text-gray-800">
+            Login to Yo Doctor
+          </h1>
+          <p className="text-gray-500 mt-2 text-sm">
+            Enter your credentials to continue
+          </p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-5 sm:space-y-6">
           {/* Email / Mobile */}
           <div>
-            <label htmlFor="emailOrMobile" className="block text-sm sm:text-base font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="emailOrMobile"
+              className="block text-sm sm:text-base font-medium text-gray-700 mb-1"
+            >
               Mobile Number / Email ID
             </label>
             <input
@@ -86,13 +110,20 @@ const ClientLoginPage = () => {
                 errors.emailOrMobile ? "border-red-500" : "border-gray-300"
               }`}
             />
-            {errors.emailOrMobile && <p className="text-red-500 text-xs mt-1">{errors.emailOrMobile}</p>}
+            {errors.emailOrMobile && (
+              <p className="text-red-500 text-xs mt-1">
+                {errors.emailOrMobile}
+              </p>
+            )}
           </div>
 
           {/* Password */}
           {!loginWithOtp && (
             <div className="relative">
-              <label htmlFor="password" className="block text-sm sm:text-base font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="password"
+                className="block text-sm sm:text-base font-medium text-gray-700 mb-1"
+              >
                 Password
               </label>
               <input
@@ -111,7 +142,9 @@ const ClientLoginPage = () => {
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
-              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
+              {errors.password && (
+                <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+              )}
             </div>
           )}
 

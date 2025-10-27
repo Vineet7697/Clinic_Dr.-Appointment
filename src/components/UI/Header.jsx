@@ -4,10 +4,9 @@ import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
 import { UserCircle } from "lucide-react";
 
 const Header = () => {
-  const [open, setOpen] = useState(false); // Dropdown state for "For Software"
-  const [menuOpen, setMenuOpen] = useState(false); // Hamburger state
-  const [softwareOpen, setSoftwareOpen] = useState(false); // Mobile "For Software" dropdown
-  const [profileOpen, setProfileOpen] = useState(false); // Profile dropdown state
+  const [menuOpen, setMenuOpen] = useState(false); // Hamburger menu
+  const [softwareOpen, setSoftwareOpen] = useState(false); // Mobile dropdown
+  const [profileOpen, setProfileOpen] = useState(false); // Profile dropdown
   const navigate = useNavigate();
 
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -47,15 +46,41 @@ const Header = () => {
 
         {/* Desktop NavLinks */}
         <div className="hidden md:flex gap-6 text-gray-700 font-medium">
-          <Link to="/finddoctor" className="hover:text-blue-600 text-black">
+          <Link to="/finddoctor" className="hover:text-blue-600">
             Find Doctors
           </Link>
+          <Link to="/videoconsult" className="hover:text-blue-600">
+            Video Consult
+          </Link>
+          <Link to="/hospital" className="hover:text-blue-600">
+            Find Hospital
+          </Link>
+          <Link to="/clinic" className="hover:text-blue-600">
+            Find Clinic
+          </Link>
+
+          {/* For Software Dropdown */}
+          <div className="relative group">
+            <button className="flex items-center gap-1 hover:text-blue-600">
+              For Software <FaChevronDown size={12} />
+            </button>
+            <div className="absolute hidden group-hover:block bg-white shadow-md rounded-md mt-2">
+              <ul className="text-gray-700 text-sm">
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Software for Clinic
+                </li>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Software for Hospital
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* RIGHT SECTION (Desktop only) */}
-      <div className="flex items-center gap-7 relative">
-        {loggedInUser ? (
+      {/* RIGHT SECTION */}
+      <div className="flex items-center gap-6">
+        {loggedInUser && (
           <div className="relative">
             <button
               onClick={() => setProfileOpen(!profileOpen)}
@@ -80,18 +105,10 @@ const Header = () => {
               </div>
             )}
           </div>
-        ) : (
-          <div>
-            <Link to="/clientloginpage">
-              <button className="text-[#737382] border border-gray-400 px-4 py-1 rounded-md hover:border-blue-600 hover:text-blue-600 transition cursor-pointer">
-                SignUp / Login
-              </button>
-            </Link>
-          </div>
         )}
       </div>
 
-      {/* 🔹 Mobile/Tablet Left Slide Hamburger Menu */}
+      {/* MOBILE MENU */}
       <div
         className={`fixed top-0 left-0 h-full w-3/4 sm:w-1/2 bg-white shadow-lg transform transition-transform duration-300 ease-in-out md:hidden z-40 ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
@@ -145,7 +162,7 @@ const Header = () => {
             </Link>
           </li>
 
-          {/* 🔹 For Software (inside mobile menu) */}
+          {/* For Software Dropdown */}
           <li>
             <button
               onClick={() => setSoftwareOpen(!softwareOpen)}

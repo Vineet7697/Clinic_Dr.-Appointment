@@ -69,7 +69,7 @@ const BookAppointmentPage2 = () => {
           {/* Self */}
           <div
             onClick={() => setPatientType("self")}
-            className={`flex-1 flex flex-col items-center justify-center p-6 rounded-xl cursor-pointer transition border ${
+            className={`flex-1 flex flex-col items-center justify-center  rounded-xl cursor-pointer transition border ${
               patientType === "self"
                 ? "border-teal-500 bg-teal-50"
                 : "border-gray-200 bg-white hover:bg-gray-50"
@@ -86,7 +86,7 @@ const BookAppointmentPage2 = () => {
           {/* Family */}
           <div
             onClick={() => setPatientType("family")}
-            className={`flex-1 flex flex-col items-center justify-center p-6 rounded-xl cursor-pointer transition border ${
+            className={`flex-1 flex flex-col items-center justify-center p-2 rounded-xl cursor-pointer transition border ${
               patientType === "family"
                 ? "border-teal-500 bg-teal-50"
                 : "border-gray-200 bg-white hover:bg-gray-50"
@@ -174,12 +174,12 @@ const BookAppointmentPage2 = () => {
 
          {/* Date & Time Selectors */}
         <div className="md:flex md:gap-8 mb-8">
-          <div className="grid grid-cols-7 gap-2 mb-4 md:mb-0 md:flex-1">
+          <div className="grid grid-cols-7 gap-2 mb-4  md:flex-1">
             {dates.map((date) => (
               <button
                 key={date}
                 onClick={() => setSelectedDate(String(date))}
-                className={`w-10 h-10 flex items-center justify-center rounded-full transition ${
+                className={`w-8 h-8 text-sm flex items-center justify-center rounded-full transition ${
                   selectedDate === String(date) ? "bg-teal-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-teal-100"
                 }`}
               >
@@ -187,13 +187,13 @@ const BookAppointmentPage2 = () => {
               </button>
             ))}
           </div>
-          <div className="flex flex-col gap-2 md:flex-1">
+          <div className="flex flex-col gap-2 md:flex-1 cursor-pointer">
             {timeSlots.map((time) => (
               <button
                 key={time}
                 onClick={() => setSelectedTime(time)}
-                className={`py-2 rounded-lg transition ${
-                  selectedTime === time ? "bg-teal-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-teal-100"
+                className={`py-2 rounded-lg transition text-sm ${
+                  selectedTime === time ? "bg-teal-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-teal-100 cursor-pointer text-sm"
                 }`}
               >
                 {time}
@@ -207,7 +207,7 @@ const BookAppointmentPage2 = () => {
         {/* Confirm Button */}
         <button
           onClick={handleConfirm}
-          className="w-full py-4 rounded-2xl bg-gradient-to-r from-teal-400 to-cyan-500 text-white font-bold text-lg shadow-lg hover:from-teal-500 hover:to-cyan-600 transition"
+          className="w-full py-4 rounded-2xl bg-gradient-to-r from-teal-400 to-cyan-500 text-white font-bold text-lg shadow-lg hover:from-teal-500 hover:to-cyan-600 transition cursor-pointer"
         >
           Confirm Appointment
         </button>

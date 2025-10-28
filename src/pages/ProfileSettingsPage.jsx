@@ -8,8 +8,8 @@ import {
 } from "react-icons/fa";
 
 const ProfileSettingsPage = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeNav, setActiveNav] = useState("settings");
+  // const [sidebarOpen, setSidebarOpen] = useState(false);
+  // const [activeNav, setActiveNav] = useState("settings");
 
   const [clinicName, setClinicName] = useState("");
   const [phone, setPhone] = useState("");

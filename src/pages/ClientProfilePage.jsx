@@ -12,12 +12,22 @@ const ClientProfilePage = () => {
     name: "",
     email: "",
     phone: "",
+    gender: "",
+    dob: "",
+    bloodGroup: "",
+    address: "",
+    city: "",
+    medicalHistory: "",
+    allergies: "",
+    preferredDoctor: "",
+    preferredTime: "",
   });
 
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-blue-100 to-blue-300">
 
-      <main className="flex-1 p-6 ml-64 space-y-6 overflow-y-auto mt-20">
+     <main className="flex-1 p-6 space-y-6 overflow-y-auto mt-10">
+
         {activeNav === "profile" && (
           <ProfileSection
             personalDetails={personalDetails}

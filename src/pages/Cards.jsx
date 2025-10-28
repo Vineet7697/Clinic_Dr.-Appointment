@@ -226,7 +226,7 @@ const Cards = () => {
                         className="bg-green-700 hover:bg-green-800 text-white px-5 py-2 rounded-lg cursor-pointer text-sm"
                         onClick={() => navigate(`/contact-doctor/${doctor.id}`)}
                       >
-                        Contact
+                       📞 Contact
                       </Button>
                     </div>
                   </Card.Body>

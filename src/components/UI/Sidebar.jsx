@@ -1,9 +1,17 @@
-import React from "react";
+// Sidebar.jsx
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  const role = loggedInUser?.role || "client"; // Default role: client
+import LogoutModal from "../../pages/LogoutModal"; // ✅ Correct path
 
+const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
+  const navigate = useNavigate();
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); // modal state
+
+  // 🧠 Check user role from localStorage
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const role = loggedInUser?.role || "client"; // default: client
+
+  // 👨‍⚕ Doctor navigation
   const doctorNav = [
     { key: "dashboard", label: "Dashboard", icon: "🏠" },
     { key: "patients", label: "Today's Patients", icon: "🧑‍⚕" },
@@ -14,51 +22,43 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
     { key: "settings", label: "Settings", icon: "⚙" },
   ];
 
+  // 👩‍🦰 Client navigation
   const clientNav = [
     { key: "profile", label: "My Profile", icon: "👤" },
     { key: "appointments", label: "Appointment History", icon: "📅" },
     { key: "family", label: "Family Members", icon: "👨‍👩‍👧" },
     { key: "settings", label: "Settings", icon: "⚙" },
     { key: "edit", label: "Edit Profile", icon: "✏️" },
-
-
-    
   ];
 
-
-
-  const navigate = useNavigate();
-
-
+  // ✅ Role-based nav
   const navItems = role === "doctor" ? doctorNav : clientNav;
 
-  // ✅ Internal navigation only (no page reload)
+  // 🔁 Page navigation
   const handleNavClick = (item) => {
-  if (setActiveNav) setActiveNav(item.key);
-  if (setIsOpen) setIsOpen(false);
+    if (setActiveNav) setActiveNav(item.key);
+    if (setIsOpen) setIsOpen(false);
 
-  // ✅ Doctor ke liye navigate karega
-  if (role === "doctor") {
-  navigate(`/doctordashboard/${item.key}`); // ✅ Nested route
-} else {
-  navigate(`/client/${item.key}`); // ✅ Client ke liye
-}
-};
+    if (role === "doctor") {
+      navigate(`/doctordashboard/${item.key}`);
+    } else {
+      navigate(`/client/${item.key}`);
+    }
+  };
 
-
-  const handleLogout = () => {
+  // 🚪 Logout confirmed
+  const handleLogoutConfirm = () => {
     localStorage.removeItem("loggedInUser");
-    window.location.href = "/clientloginpage"; // Direct redirect
+    setIsLogoutModalOpen(false);
+    navigate("/clientloginpage");
   };
 
   return (
     <>
       {/* 🖥️ Desktop Sidebar */}
-      
       <aside className="hidden md:block w-64 bg-white rounded-2xl shadow-2xl p-4 sticky top-8 self-start mt-20 h-[80vh]">
-        
         <div className="mb-6 text-xl font-bold text-teal-600 text-center">
-          Yo Doctor
+          {role === "doctor" ? "Yo Doctor" : "Yo Client"}
         </div>
 
         <nav className="space-y-2">
@@ -77,10 +77,10 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
             </div>
           ))}
 
-          {/* Logout */}
+          {/* 🚪 Logout (common for doctor + client) */}
           <div
             className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-600 cursor-pointer mt-4"
-            onClick={handleLogout}
+            onClick={() => setIsLogoutModalOpen(true)}
           >
             🚪 <div className="font-medium">Logout</div>
           </div>
@@ -96,7 +96,9 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
           />
           <div className="absolute left-0 top-0 bottom-0 w-64 bg-white p-4 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
-              <div className="font-bold text-teal-600 text-lg">Yo Doctor</div>
+              <div className="font-bold text-teal-600 text-lg">
+                {role === "doctor" ? "Yo Doctor" : "Yo Client"}
+              </div>
               <button
                 className="p-1 rounded-md hover:bg-gray-100"
                 onClick={() => setIsOpen(false)}
@@ -121,10 +123,10 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
                 </div>
               ))}
 
-              {/* Logout for Mobile */}
+              {/* 🚪 Logout for Mobile */}
               <div
                 className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-600 cursor-pointer mt-4"
-                onClick={handleLogout}
+                onClick={() => setIsLogoutModalOpen(true)}
               >
                 🚪 <div className="font-medium">Logout</div>
               </div>
@@ -132,6 +134,13 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
           </div>
         </div>
       )}
+
+      {/* 🔘 Logout Confirmation Modal (common for both roles) */}
+      <LogoutModal
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={handleLogoutConfirm}
+      />
     </>
   );
 };

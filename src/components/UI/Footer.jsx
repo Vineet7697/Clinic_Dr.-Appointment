@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#28328c] text-white pt-10 pb-6">
       {/* TOP GRID SECTION */}
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+      <div className="max-w-7xl mx-auto  justify-around px-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
         {/* Yo Doctor */}
         <div className="flex flex-col gap-2">
           <span className="font-semibold text-lg">Yo Doctor</span>
@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
 
         {/* For Doctors */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 ml-6">
           <span className="font-semibold text-lg">For Doctors</span>
           <a href="#" className="hover:text-gray-300">Yo Doctor Consult</a>
           <a href="#" className="hover:text-gray-300">Yo Doctor Health Feed</a>
@@ -36,17 +36,15 @@ const Footer = () => {
         </div>
 
         {/* For Hospitals */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 ml-6">
           <span className="font-semibold text-lg">For Hospitals</span>
           <a href="#" className="hover:text-gray-300">Insta by Yo Doctor</a>
-          <a href="#" className="hover:text-gray-300">Qikwell by Yo Doctor</a>
           <a href="#" className="hover:text-gray-300">Yo Doctor Profile</a>
           <a href="#" className="hover:text-gray-300">Yo Doctor Reach</a>
-          <a href="#" className="hover:text-gray-300">Yo Doctor Drive</a>
         </div>
 
         {/* More */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 ml-6">
           <span className="font-semibold text-lg">More</span>
           <a href="#" className="hover:text-gray-300">Help</a>
           <a href="#" className="hover:text-gray-300">Developers</a>

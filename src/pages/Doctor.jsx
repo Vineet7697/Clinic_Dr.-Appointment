@@ -14,7 +14,12 @@ import {
   FaBook,
   FaBriefcase,
   FaQrcode,
+  FaStethoscope,
+  FaBaby,
+  FaHeartbeat,
 } from "react-icons/fa";
+
+import { GiTooth } from "react-icons/gi";
 
 const Doctor = () => {
   const webcamRef = useRef(null);
@@ -29,8 +34,6 @@ const Doctor = () => {
   const [showDiseaseDropdown, setShowDiseaseDropdown] = useState(false);
   const [diseases, setDiseases] = useState([]);
   const navigate = useNavigate();
-
-
 
   const locationRef = useRef();
   const diseaseRef = useRef();
@@ -101,17 +104,14 @@ const Doctor = () => {
     }
   };
 
-
-
   const handleSearch = () => {
     // Redirect to /clinic with query params
     navigate(
-      `/cards?city=${encodeURIComponent(cityQuery)}&disease=${encodeURIComponent(diseaseQuery)}`
+      `/cards?city=${encodeURIComponent(
+        cityQuery
+      )}&disease=${encodeURIComponent(diseaseQuery)}`
     );
   };
-
-
-
 
   return (
     <>
@@ -127,7 +127,7 @@ const Doctor = () => {
             <span className="text-red-600">
               <Typewriter
                 options={{
-                  strings: [ "Clinics","Doctors", "Diseases"],
+                  strings: ["Clinics", "Doctors", "Diseases"],
                   autoStart: true,
                   loop: true,
                   delay: 75,
@@ -271,11 +271,36 @@ const Doctor = () => {
             )}
           </div>
 
-          <div className="mt-4 text-xs sm:text-sm text-gray-300">
-            Popular searches: <span className="text-white">Dermatologist</span>{" "}
-            | <span className="text-white">Pediatrician</span> |{" "}
-            <span className="text-white">Gynecologist</span> |{" "}
-            <span className="text-white">Dentist</span>
+          <div className="flex flex-wrap items-center justify-center gap-4 text-white text-sm md:text-base mt-4">
+            <span className="font-semibold text-gray-200">
+              Popular Searches:
+            </span>
+
+            <div className="flex items-center gap-2">
+              <FaStethoscope size={18} className="text-white" />
+              <span className="text-white">Dermatologist</span>
+            </div>
+
+            <span className="text-gray-400">|</span>
+
+            <div className="flex items-center gap-2">
+              <FaBaby size={18} className="text-white" />
+              <span className="text-white">Pediatrician</span>
+            </div>
+
+            <span className="text-gray-400">|</span>
+
+            <div className="flex items-center gap-2">
+              <FaHeartbeat size={18} className="text-white" />
+              <span className="text-white">Gynecologist</span>
+            </div>
+
+            <span className="text-gray-400">|</span>
+
+            <div className="flex items-center gap-2">
+              <GiTooth size={18} className="text-white" />
+              <span className="text-white">Dentist</span>
+            </div>
           </div>
         </div>
       </section>

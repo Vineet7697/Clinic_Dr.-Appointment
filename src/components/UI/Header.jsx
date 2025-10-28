@@ -7,83 +7,84 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
 
-  const dropdownRef = useRef(null); // 👈 dropdown ke liye ref
-
-  // 🔹 Local storage se logged user
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  const userRole = loggedInUser?.role; // doctor ya client
+  const userRole = loggedInUser?.role;
 
-  // 🔹 Logout
+  // Logout
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser");
     setProfileOpen(false);
     navigate("/");
   };
 
-  // 🔹 Navigation
+  // Navigation
   const handleNavigate = (path) => {
     setProfileOpen(false);
     navigate(path);
   };
 
-  // 👇 Click outside detection
+  // Click outside profile dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setProfileOpen(false);
       }
     };
-
-    if (profileOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    if (profileOpen) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [profileOpen]);
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-white shadow-md px-6 py-3 flex items-center justify-between z-50">
       {/* LEFT SECTION */}
-      <div className="flex items-center gap-6">
-        <div className="flex items-center gap-3">
-          <div className="md:hidden mr-2">
-            {menuOpen ? (
-              <FaTimes
-                size={22}
-                onClick={() => setMenuOpen(false)}
-                className="cursor-pointer text-gray-800"
-              />
-            ) : (
-              <FaBars
-                size={22}
-                onClick={() => setMenuOpen(true)}
-                className="cursor-pointer text-gray-800"
-              />
-            )}
-          </div>
-
-          <Link to="/" className="flex items-center gap-2">
-            <img src="/images/yo.png" alt="Logo" className="h-10" />
-          </Link>
+      <div className="flex items-center gap-3">
+        {/* Hamburger menu (mobile only) */}
+        <div className="md:hidden mr-2">
+          {menuOpen ? (
+            <FaTimes
+              size={22}
+              onClick={() => setMenuOpen(false)}
+              className="cursor-pointer text-gray-800"
+            />
+          ) : (
+            <FaBars
+              size={22}
+              onClick={() => setMenuOpen(true)}
+              className="cursor-pointer text-gray-800"
+            />
+          )}
         </div>
 
-        <div className="hidden md:flex gap-6 text-gray-700 font-medium">
-          <Link to="/finddoctor" className="hover:text-blue-600 text-black">
-            Find Doctors
-          </Link>
-        </div>
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2">
+          <img src="/images/yo.png" alt="Logo" className="h-10" />
+        </Link>
       </div>
 
       {/* RIGHT SECTION */}
-      <div className="flex items-center gap-7 relative">
+      <div className="flex items-center gap-6 relative">
+        {/* Desktop links */}
+        <div className="hidden md:flex gap-6 text-gray-700 font-medium">
+          <Link to="/finddoctor" className="hover:text-blue-600 text-black">
+            Home
+          </Link>
+          <Link to="/finddoctor" className="hover:text-blue-600 text-black">
+            About
+          </Link>
+          <Link to="/finddoctor" className="hover:text-blue-600 text-black">
+            Service
+          </Link>
+          <Link to="/finddoctor" className="hover:text-blue-600 text-black">
+            Contact
+          </Link>
+          <Link to="/finddoctor" className="hover:text-blue-600 text-black">
+            Help
+          </Link>
+        </div>
+
+        {/* Profile dropdown */}
         {loggedInUser && (
           <div className="relative" ref={dropdownRef}>
             <button
@@ -106,9 +107,7 @@ const Header = () => {
                       </li>
                       <li
                         className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                        onClick={() =>
-                          handleNavigate("/client/appointments")
-                        }
+                        onClick={() => handleNavigate("/client/appointments")}
                       >
                         Appointment History
                       </li>
@@ -203,6 +202,60 @@ const Header = () => {
             )}
           </div>
         )}
+      </div>
+
+      {/* MOBILE SLIDE-IN MENU */}
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40 md:hidden ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex justify-between items-center px-4 py-3 border-b">
+         
+          <FaTimes
+            size={22}
+            className="cursor-pointer text-gray-700"
+            onClick={() => setMenuOpen(false)}
+          />
+        </div>
+
+        <ul className="flex flex-col mt-4 space-y-3 px-5 text-gray-700 font-medium">
+          <Link
+            to="/finddoctor"
+            onClick={() => setMenuOpen(false)}
+            className="hover:text-blue-600"
+          >
+            Home
+          </Link>
+          <Link
+            to="/finddoctor"
+            onClick={() => setMenuOpen(false)}
+            className="hover:text-blue-600"
+          >
+            About
+          </Link>
+          <Link
+            to="/finddoctor"
+            onClick={() => setMenuOpen(false)}
+            className="hover:text-blue-600"
+          >
+            Service
+          </Link>
+          <Link
+            to="/finddoctor"
+            onClick={() => setMenuOpen(false)}
+            className="hover:text-blue-600"
+          >
+            Contact
+          </Link>
+          <Link
+            to="/finddoctor"
+            onClick={() => setMenuOpen(false)}
+            className="hover:text-blue-600"
+          >
+            Help
+          </Link>
+        </ul>
       </div>
     </nav>
   );

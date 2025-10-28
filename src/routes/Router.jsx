@@ -41,6 +41,11 @@ import SettingsSection from "../components/ProfileSections/SettingsSection";
 import EditSection from "../components/ProfileSections/EditSection";
 import ClientDashboard from "../pages/ClientDashboard";
 import DoctorLayout from "../pages/DoctorLayout";
+import Home from "../pages/Home";
+import About from "../pages/About";
+import Service from "../pages/Service";
+import Contact from "../pages/Contact";
+import Help from "../pages/Help";
 
 const Router = () => {
   return (
@@ -62,6 +67,11 @@ const Router = () => {
           <Route path="clienthomepage" element={<ClientHomePage />} />
           <Route path="searchdoctorpage" element={<SearchDoctorPage />} />
           <Route path="doctorprofilemodal" element={<DoctorProfileModal />} />
+          <Route path="home" element={<Home/>} />
+          <Route path="about" element={<About/>} />
+          <Route path="service" element={<Service/>} />
+          <Route path="contact" element={<Contact/>} />
+          <Route path="help" element={<Help/>} />
        
 <Route path="/bookappointmentpage2" element={<BookAppointmentPage2 />} />
 {/* <Route path="/bookappointmentpage2/:id" element={<BookAppointmentPage2 />} /> */}

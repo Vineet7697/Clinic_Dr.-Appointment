@@ -205,6 +205,8 @@ const ClientRegisterPage = () => {
               )}
             </div>
 
+            
+
             {/* Register Button */}
             <button
               type="submit"

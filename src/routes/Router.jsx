@@ -4,7 +4,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 
-import Doctor from "../pages/Doctor";
+
 import Otp from "../pages/Otp";
 import CreatePassword from "../pages/CreatePassword";
 import DoctorRegister from "../pages/DoctorRegister";
@@ -35,6 +35,7 @@ import DoctorDashboard from '../pages/DoctorDashboard';
 import AnalyticsDashboard from '../pages/AnalyticsDashboard';
 import ApprovalStatusPage from '../pages/ApprovalStatusPage';
 import ProfileSection from "../components/ProfileSections/ProfileSection";
+import Doctor from "../components/ProfileSections/Doctor";
 import AppointmentHistory from "../components/ProfileSections/AppointmentHistory";
 import FamilyMembers from "../components/ProfileSections/FamilyMembers";
 import SettingsSection from "../components/ProfileSections/SettingsSection";
@@ -54,7 +55,7 @@ const Router = () => {
 
         <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />} />
-          <Route path="finddoctor" element={<Doctor />} />
+          
           <Route path="verify-otp" element={<Otp />} />
           <Route path="create-password" element={<CreatePassword />} />
           <Route path="doctorregister" element={<DoctorRegister />} />
@@ -103,6 +104,7 @@ const Router = () => {
           <Route path="/client" element={<ClientDashboard />}>
           <Route index element={<ClientProfilePage />} />
           <Route path="profile" element={<ClientProfilePage />} />
+          <Route path="finddoctor" element={<Doctor />} />
           <Route path="appointments" element={<AppointmentHistory />} />
           <Route path="family" element={<FamilyMembers />} />
           <Route path="settings" element={<SettingsSection />} />

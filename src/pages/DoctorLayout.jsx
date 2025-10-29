@@ -22,12 +22,12 @@ const DoctorLayout = () => {
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <header className="bg-teal-500 text-white px-8 py-4 flex items-center justify-between shadow-md sticky top-16 z-10">
-          <button
+          {/* <button
             className="md:hidden text-2xl focus:outline-none"
             onClick={() => setSidebarOpen(!sidebarOpen)}
           >
             ☰
-          </button>
+          </button> */}
           <h1 className="font-semibold text-lg md:text-xl tracking-wide">
             Welcome, Dr. Sharma
           </h1>

@@ -82,7 +82,7 @@ const DoctorLoginPage = () => {
                 htmlFor="doctorId"
                 className="block text-gray-600 mb-2 font-medium"
               >
-                Doctor ID
+                Doctor ID/ Mobile Number
               </label>
               <input
                 type="text"

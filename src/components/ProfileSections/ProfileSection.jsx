@@ -1,6 +1,81 @@
+ // medicalHistory:
+        //   user.medicalHistory || personalDetails?.medicalHistory || "",
+        // allergies: user.allergies || personalDetails?.allergies || "",
+        // preferredDoctor:
+        //   user.preferredDoctor || personalDetails?.preferredDoctor || "",
+        // preferredTime:
+        //   user.preferredTime || personalDetails?.preferredTime || "",
+
+{/* Health Info */}
+        {/* <div className="md:col-span-3">
+          <label className="block text-gray-600 mb-1">Medical History</label>
+          <textarea
+            value={details.medicalHistory}
+            onChange={(e) =>
+              setPersonalDetails({
+                ...details,
+                medicalHistory: e.target.value,
+              })
+            }
+            className="w-full border rounded-lg p-2 outline-none"
+            rows="3"
+            placeholder="e.g., Diabetes, High BP..."
+          ></textarea>
+        </div> */}
+
+        {/* <div className="md:col-span-3">
+          <label className="block text-gray-600 mb-1">Allergies</label>
+          <textarea
+            value={details.allergies}
+            onChange={(e) =>
+              setPersonalDetails({ ...details, allergies: e.target.value })
+            }
+            className="w-full border rounded-lg p-2 outline-none"
+            rows="2"
+            placeholder="e.g., Peanut allergy, Dust allergy..."
+          ></textarea>
+        </div> */}
+
+        {/* Preferences */}
+        {/* <div>
+          <label className="block text-gray-600 mb-1">Preferred Doctor</label>
+          <input
+            type="text"
+            value={details.preferredDoctor}
+            onChange={(e) =>
+              setPersonalDetails({
+                ...details,
+                preferredDoctor: e.target.value,
+              })
+            }
+            className="w-full border rounded-lg p-2 outline-none"
+            placeholder="e.g., Dr. Rohan Sharma"
+          />
+        </div> */}
+
+        {/* <div>
+          <label className="block text-gray-600 mb-1">Preferred Time Slot</label>
+          <input
+            type="text"
+            value={details.preferredTime}
+            onChange={(e) =>
+              setPersonalDetails({ ...details, preferredTime: e.target.value })
+            }
+            className="w-full border rounded-lg p-2 outline-none"
+            placeholder="e.g., Morning / Evening"
+          />
+        </div> */}
+
+
+
+import React, { useState, useEffect } from "react";
 
 const ProfileSection = ({ personalDetails = {}, setPersonalDetails }) => {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  const [profileImage, setProfileImage] = useState(
+    user?.profileImage || personalDetails?.profileImage || ""
+  );
+  const [age, setAge] = useState("");
 
   const details = user
     ? {
@@ -10,25 +85,59 @@ const ProfileSection = ({ personalDetails = {}, setPersonalDetails }) => {
         gender: user.gender || personalDetails?.gender || "",
         dob: user.dob || personalDetails?.dob || "",
         bloodGroup: user.bloodGroup || personalDetails?.bloodGroup || "",
-        address: user.address || personalDetails?.address || "",
         city: user.city || personalDetails?.city || "",
-        medicalHistory:
-          user.medicalHistory || personalDetails?.medicalHistory || "",
-        allergies: user.allergies || personalDetails?.allergies || "",
-        preferredDoctor:
-          user.preferredDoctor || personalDetails?.preferredDoctor || "",
-        preferredTime:
-          user.preferredTime || personalDetails?.preferredTime || "",
+        address: user.address || personalDetails?.address || "",
+        
+       
       }
     : personalDetails;
 
+  // ✅ DOB se Age calculate karna
+  useEffect(() => {
+    if (details.dob) {
+      const birthDate = new Date(details.dob);
+      const ageDiff = new Date().getFullYear() - birthDate.getFullYear();
+      setAge(ageDiff);
+    }
+  }, [details.dob]);
+
+  // ✅ Profile image upload handler
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setProfileImage(imageUrl);
+      setPersonalDetails({ ...details, profileImage: imageUrl });
+    }
+  };
+
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 ">
+    <div className="bg-white rounded-2xl shadow-md p-6 max-w-2xl mx-auto mt-6">
       <h3 className="text-xl font-semibold mb-4 text-gray-800">
         Personal Details
       </h3>
 
-      <div className="grid md:grid-cols-3 gap-4">
+      {/* 👤 Profile Picture Section */}
+      <div className="flex items-center gap-4 mb-6">
+        <img
+          src={profileImage || "/images/default-avatar.png"}
+          alt="Profile"
+          className="w-20 h-20 rounded-full object-cover border"
+        />
+        <div>
+          <label className="block text-gray-600 mb-1 font-medium">
+            Upload Profile Picture
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="text-sm"
+          />
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-4">
         {/* Basic Info */}
         <div>
           <label className="block text-gray-600 mb-1">Full Name</label>
@@ -39,7 +148,7 @@ const ProfileSection = ({ personalDetails = {}, setPersonalDetails }) => {
               setPersonalDetails({ ...details, name: e.target.value })
             }
             className="w-full border rounded-lg p-2 outline-none"
-            placeholder="Enter your full name"
+           
           />
         </div>
 
@@ -98,6 +207,18 @@ const ProfileSection = ({ personalDetails = {}, setPersonalDetails }) => {
           />
         </div>
 
+        {/* ✅ Auto-calculated Age */}
+        <div>
+          <label className="block text-gray-600 mb-1">Age</label>
+          <input
+            type="text"
+            value={age || ""}
+            readOnly
+            className="w-full border rounded-lg p-2 bg-gray-100 outline-none"
+            placeholder="Auto calculated from DOB"
+          />
+        </div>
+
         <div>
           <label className="block text-gray-600 mb-1">Blood Group</label>
           <input
@@ -108,6 +229,19 @@ const ProfileSection = ({ personalDetails = {}, setPersonalDetails }) => {
             }
             className="w-full border rounded-lg p-2 outline-none"
             placeholder="e.g., O+, A-, B+"
+          />
+        </div>
+
+        <div>
+          <label className="block text-gray-600 mb-1">City</label>
+          <input
+            type="text"
+            value={details.city}
+            onChange={(e) =>
+              setPersonalDetails({ ...details, city: e.target.value })
+            }
+            className="w-full border rounded-lg p-2 outline-none"
+            placeholder="Enter your city"
           />
         </div>
 
@@ -125,78 +259,9 @@ const ProfileSection = ({ personalDetails = {}, setPersonalDetails }) => {
           />
         </div>
 
-        <div>
-          <label className="block text-gray-600 mb-1">City</label>
-          <input
-            type="text"
-            value={details.city}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, city: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            placeholder="Enter your city"
-          />
-        </div>
+        
 
-        {/* Health Info */}
-        <div className="md:col-span-3">
-          <label className="block text-gray-600 mb-1">Medical History</label>
-          <textarea
-            value={details.medicalHistory}
-            onChange={(e) =>
-              setPersonalDetails({
-                ...details,
-                medicalHistory: e.target.value,
-              })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            rows="3"
-            placeholder="e.g., Diabetes, High BP..."
-          ></textarea>
-        </div>
-
-        <div className="md:col-span-3">
-          <label className="block text-gray-600 mb-1">Allergies</label>
-          <textarea
-            value={details.allergies}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, allergies: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            rows="2"
-            placeholder="e.g., Peanut allergy, Dust allergy..."
-          ></textarea>
-        </div>
-
-        {/* Preferences */}
-        <div>
-          <label className="block text-gray-600 mb-1">Preferred Doctor</label>
-          <input
-            type="text"
-            value={details.preferredDoctor}
-            onChange={(e) =>
-              setPersonalDetails({
-                ...details,
-                preferredDoctor: e.target.value,
-              })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            placeholder="e.g., Dr. Rohan Sharma"
-          />
-        </div>
-
-        <div>
-          <label className="block text-gray-600 mb-1">Preferred Time Slot</label>
-          <input
-            type="text"
-            value={details.preferredTime}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, preferredTime: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            placeholder="e.g., Morning / Evening"
-          />
-        </div>
+       
       </div>
     </div>
   );

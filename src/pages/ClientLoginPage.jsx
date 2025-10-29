@@ -72,7 +72,7 @@ const ClientLoginPage = () => {
           })
         );
 
-        navigate("/finddoctor");
+        navigate("/client");
       } else {
         alert("Invalid email or password!");
       }

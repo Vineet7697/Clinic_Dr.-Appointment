@@ -169,7 +169,7 @@ const DoctorRegistrationPage = () => {
               </div>
               <div>
                 <label className="block mb-2 text-gray-600 font-medium">
-                  Doctor ID
+                  Doctor ID /Mobile Number
                 </label>
                 <input
                   type="text"
@@ -382,6 +382,8 @@ const DoctorRegistrationPage = () => {
             >
               Submit Registration
             </button>
+
+            
             <p className="text-xs text-gray-500 mt-3">
               Admin will verify and approve within 24 hours.
             </p>

@@ -1,10 +1,10 @@
 
 import React, { useState } from "react";
-import ProfileSection from "../components/client_Profile/ProfileSection";
-import AppointmentHistory from "../components/client_Profile/AppointmentHistory";
-import FamilyMembers from "../components/client_Profile/FamilyMembers";
-import SettingsSection from "../components/client_Profile/SettingsSection";
-import ChangePassword from "../components/client_Profile/ChangePassword";
+import ProfileSection from "./ProfileSection";
+import AppointmentHistory from "./AppointmentHistory";
+import FamilyMembers from "./FamilyMembers";
+import SettingsSection from "./SettingsSection";
+import ChangePassword from "./ChangePassword";
 const ClientProfilePage = () => {
   const [activeNav, setActiveNav] = useState("profile");
   const [personalDetails, setPersonalDetails] = useState({

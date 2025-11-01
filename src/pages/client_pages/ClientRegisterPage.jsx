@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CalendarDays, User, Mail, Lock, ChevronDown } from "lucide-react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { validateRegisterForm } from "../controller/FormValidation";
+import { validateRegisterForm } from "../../controller/FormValidation";
 
 const ClientRegisterPage = () => {
   const [formData, setFormData] = useState({

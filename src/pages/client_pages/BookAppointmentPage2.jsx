@@ -3,8 +3,8 @@
 
 import React, { useState } from "react";
 import { FaUser, FaUsers } from "react-icons/fa";
-import { validateFamilyMember } from "../controller/FormValidation"; // ✅ import validation
-import data from "../data.json";
+import { validateFamilyMember } from "../../controller/FormValidation"; // ✅ import validation
+import data from "../../data.json";
 import { useNavigate, useParams } from "react-router-dom";
 
 const BookAppointmentPage2 = () => {

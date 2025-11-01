@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import { useParams, useNavigate } from "react-router-dom";
-import data from "../data.json";
+import data from "../../data.json";
 
 const BookAppointmentPage = ({ members }) => {
   const [appointmentFor, setAppointmentFor] = useState("myself");

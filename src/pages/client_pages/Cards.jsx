@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaMapMarkerAlt, FaSearch } from "react-icons/fa";
-import data from "../data.json";
+import data from "../../data.json";
 
 const Cards = () => {
   const navigate = useNavigate();

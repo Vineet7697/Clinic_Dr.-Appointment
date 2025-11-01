@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { validateLoginForm } from "../controller/FormValidation";
+import { validateLoginForm } from "../../controller/FormValidation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const ClientLoginPage = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/UI/Header"; // Correct path use karo
+import Header from "../../components/UI/Header"; // Correct path use karo
 import {
   FaSearch,
   FaQrcode,

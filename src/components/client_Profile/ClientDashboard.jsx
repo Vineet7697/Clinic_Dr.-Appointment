@@ -21,7 +21,7 @@ import {
 
 import { GiTooth } from "react-icons/gi";
 
-const Doctor = () => {
+const ClientDashboard = () => {
   const webcamRef = useRef(null);
   const qrScannerRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -399,4 +399,4 @@ const Doctor = () => {
   );
 };
 
-export default Doctor;
+export default ClientDashboard;

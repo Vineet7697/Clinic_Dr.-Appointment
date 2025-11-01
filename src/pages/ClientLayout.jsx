@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/UI/Sidebar";
 
-const ClientDashboard = () => {
+const ClientLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeNav, setActiveNav] = useState("dashboard");
 
@@ -24,5 +24,5 @@ const ClientDashboard = () => {
   );
 };
 
-export default ClientDashboard;
+export default ClientLayout;
 

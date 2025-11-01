@@ -1,267 +1,195 @@
- // medicalHistory:
-        //   user.medicalHistory || personalDetails?.medicalHistory || "",
-        // allergies: user.allergies || personalDetails?.allergies || "",
-        // preferredDoctor:
-        //   user.preferredDoctor || personalDetails?.preferredDoctor || "",
-        // preferredTime:
-        //   user.preferredTime || personalDetails?.preferredTime || "",
-
-{/* Health Info */}
-        {/* <div className="md:col-span-3">
-          <label className="block text-gray-600 mb-1">Medical History</label>
-          <textarea
-            value={details.medicalHistory}
-            onChange={(e) =>
-              setPersonalDetails({
-                ...details,
-                medicalHistory: e.target.value,
-              })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            rows="3"
-            placeholder="e.g., Diabetes, High BP..."
-          ></textarea>
-        </div> */}
-
-        {/* <div className="md:col-span-3">
-          <label className="block text-gray-600 mb-1">Allergies</label>
-          <textarea
-            value={details.allergies}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, allergies: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            rows="2"
-            placeholder="e.g., Peanut allergy, Dust allergy..."
-          ></textarea>
-        </div> */}
-
-        {/* Preferences */}
-        {/* <div>
-          <label className="block text-gray-600 mb-1">Preferred Doctor</label>
-          <input
-            type="text"
-            value={details.preferredDoctor}
-            onChange={(e) =>
-              setPersonalDetails({
-                ...details,
-                preferredDoctor: e.target.value,
-              })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            placeholder="e.g., Dr. Rohan Sharma"
-          />
-        </div> */}
-
-        {/* <div>
-          <label className="block text-gray-600 mb-1">Preferred Time Slot</label>
-          <input
-            type="text"
-            value={details.preferredTime}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, preferredTime: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            placeholder="e.g., Morning / Evening"
-          />
-        </div> */}
-
-
-
 import React, { useState, useEffect } from "react";
+import {
+  FaUser,
+  FaEnvelope,
+  FaHome,
+  FaPhone,
+  FaCalendarAlt,
+  FaMapPin,
+  FaEdit,
+  FaTrash,
+} from "react-icons/fa";
 
-const ProfileSection = ({ personalDetails = {}, setPersonalDetails }) => {
-  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+const ProfileSection = () => {
+  const user = JSON.parse(localStorage.getItem("loggedInUser")) || {
+    firstName: "",
+    lastName: "",
+    email: "user@gmail.com",
+    phone: "",
+    address: "",
+    pinCode: "",
+    dob: "",
+  };
+
+  const [profile, setProfile] = useState(user);
   const [profileImage, setProfileImage] = useState(
-    user?.profileImage || personalDetails?.profileImage || ""
+    user?.profileImage || "/images/default-avatar.png"
   );
-  const [age, setAge] = useState("");
 
-  const details = user
-    ? {
-        name: user.name || personalDetails?.name || "",
-        email: user.email || personalDetails?.email || "",
-        phone: user.phone || personalDetails?.phone || "",
-        gender: user.gender || personalDetails?.gender || "",
-        dob: user.dob || personalDetails?.dob || "",
-        bloodGroup: user.bloodGroup || personalDetails?.bloodGroup || "",
-        city: user.city || personalDetails?.city || "",
-        address: user.address || personalDetails?.address || "",
-        
-       
-      }
-    : personalDetails;
-
-  // ✅ DOB se Age calculate karna
-  useEffect(() => {
-    if (details.dob) {
-      const birthDate = new Date(details.dob);
-      const ageDiff = new Date().getFullYear() - birthDate.getFullYear();
-      setAge(ageDiff);
-    }
-  }, [details.dob]);
-
-  // ✅ Profile image upload handler
+  // 🖊️ Edit photo
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setProfileImage(imageUrl);
-      setPersonalDetails({ ...details, profileImage: imageUrl });
+      setProfile({ ...profile, profileImage: imageUrl });
     }
   };
 
+  // 🗑️ Remove photo
+  const handleRemoveImage = () => {
+    setProfileImage("/images/default-avatar.png");
+    setProfile({ ...profile, profileImage: "/images/default-avatar.png" });
+  };
+
+  const handleChange = (e) => {
+    setProfile({ ...profile, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem("loggedInUser", JSON.stringify(profile));
+    alert("✅ Profile updated successfully!");
+  };
+
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 max-w-2xl mx-auto mt-6">
-      <h3 className="text-xl font-semibold mb-4 text-gray-800">
-        Personal Details
-      </h3>
+    <div className="min-h-screen flex justify-center items-center bg-gray-50 py-10 px-4">
+      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-4xl">
+        <h2 className="text-2xl font-semibold text-center mb-6 text-gray-700">
+          My Profile
+        </h2>
 
-      {/* 👤 Profile Picture Section */}
-      <div className="flex items-center gap-4 mb-6">
-        <img
-          src={profileImage || "/images/default-avatar.png"}
-          alt="Profile"
-          className="w-20 h-20 rounded-full object-cover border"
-        />
-        <div>
-          <label className="block text-gray-600 mb-1 font-medium">
-            Upload Profile Picture
-          </label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="text-sm"
-          />
-        </div>
-      </div>
+        <form onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+            {/* 👤 Profile Image Section */}
+            <div className="flex flex-col items-center">
+              <img
+                src={profileImage}
+                alt="Profile"
+                className="w-32 h-32 rounded-lg object-cover border border-gray-300 shadow-sm"
+              />
 
-      <div className="grid md:grid-cols-2 gap-4">
-        {/* Basic Info */}
-        <div>
-          <label className="block text-gray-600 mb-1">Full Name</label>
-          <input
-            type="text"
-            value={details.name}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, name: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-           
-          />
-        </div>
+              {/* ✏️🗑️ Icons below image */}
+              <div className="flex gap-4 mt-3">
+                {/* Edit photo */}
+                <label className="cursor-pointer text-blue-600 hover:text-blue-800 transition">
+                  <FaEdit size={18} />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleImageChange}
+                  />
+                </label>
 
-        <div>
-          <label className="block text-gray-600 mb-1">Email</label>
-          <input
-            type="email"
-            value={details.email}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, email: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            placeholder="Enter your email address"
-          />
-        </div>
+                {/* Remove photo */}
+                <button
+                  type="button"
+                  onClick={handleRemoveImage}
+                  className="text-red-500 hover:text-red-700 transition"
+                >
+                  <FaTrash size={18} />
+                </button>
+              </div>
+            </div>
 
-        <div>
-          <label className="block text-gray-600 mb-1">Phone</label>
-          <input
-            type="text"
-            value={details.phone}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, phone: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            placeholder="Enter your phone number"
-          />
-        </div>
+            {/* 🧾 Profile Fields */}
+            <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="relative">
+                <FaUser className="absolute left-3 top-3 text-gray-400" />
+                <input
+                  type="text"
+                  name="firstName"
+                  value={profile.firstName}
+                  onChange={handleChange}
+                  placeholder="First Name"
+                  className="w-full pl-10 border rounded-lg p-2 outline-none focus:ring focus:ring-blue-200"
+                />
+              </div>
 
-        {/* Extra Personal Info */}
-        <div>
-          <label className="block text-gray-600 mb-1">Gender</label>
-          <select
-            value={details.gender}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, gender: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-          >
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
+              <div className="relative">
+                <FaUser className="absolute left-3 top-3 text-gray-400" />
+                <input
+                  type="text"
+                  name="lastName"
+                  value={profile.lastName}
+                  onChange={handleChange}
+                  placeholder="Last Name"
+                  className="w-full pl-10 border rounded-lg p-2 outline-none focus:ring focus:ring-blue-200"
+                />
+              </div>
 
-        <div>
-          <label className="block text-gray-600 mb-1">Date of Birth</label>
-          <input
-            type="date"
-            value={details.dob}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, dob: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-          />
-        </div>
+              <div className="relative">
+                <FaEnvelope className="absolute left-3 top-3 text-gray-400" />
+                <input
+                  type="email"
+                  name="email"
+                  value={profile.email}
+                  onChange={handleChange}
+                  placeholder="Email"
+                  className="w-full pl-10 border rounded-lg p-2 outline-none focus:ring focus:ring-blue-200"
+                />
+              </div>
 
-        {/* ✅ Auto-calculated Age */}
-        <div>
-          <label className="block text-gray-600 mb-1">Age</label>
-          <input
-            type="text"
-            value={age || ""}
-            readOnly
-            className="w-full border rounded-lg p-2 bg-gray-100 outline-none"
-            placeholder="Auto calculated from DOB"
-          />
-        </div>
+              <div className="relative">
+                <FaHome className="absolute left-3 top-3 text-gray-400" />
+                <input
+                  type="text"
+                  name="address"
+                  value={profile.address}
+                  onChange={handleChange}
+                  placeholder="Address"
+                  className="w-full pl-10 border rounded-lg p-2 outline-none focus:ring focus:ring-blue-200"
+                />
+              </div>
 
-        <div>
-          <label className="block text-gray-600 mb-1">Blood Group</label>
-          <input
-            type="text"
-            value={details.bloodGroup}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, bloodGroup: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            placeholder="e.g., O+, A-, B+"
-          />
-        </div>
+              <div className="relative">
+                <FaMapPin className="absolute left-3 top-3 text-gray-400" />
+                <input
+                  type="text"
+                  name="pinCode"
+                  value={profile.pinCode}
+                  onChange={handleChange}
+                  placeholder="Pin Code"
+                  className="w-full pl-10 border rounded-lg p-2 outline-none focus:ring focus:ring-blue-200"
+                />
+              </div>
 
-        <div>
-          <label className="block text-gray-600 mb-1">City</label>
-          <input
-            type="text"
-            value={details.city}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, city: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            placeholder="Enter your city"
-          />
-        </div>
+              <div className="relative">
+                <FaCalendarAlt className="absolute left-3 top-3 text-gray-400" />
+                <input
+                  type="date"
+                  name="dob"
+                  value={profile.dob}
+                  onChange={handleChange}
+                  className="w-full pl-10 border rounded-lg p-2 outline-none focus:ring focus:ring-blue-200"
+                />
+              </div>
 
-        {/* Address Section */}
-        <div className="md:col-span-2">
-          <label className="block text-gray-600 mb-1">Address</label>
-          <input
-            type="text"
-            value={details.address}
-            onChange={(e) =>
-              setPersonalDetails({ ...details, address: e.target.value })
-            }
-            className="w-full border rounded-lg p-2 outline-none"
-            placeholder="Enter your address"
-          />
-        </div>
+              <div className="relative">
+                <FaPhone className="absolute left-3 top-3 text-gray-400" />
+                <input
+                  type="text"
+                  name="phone"
+                  value={profile.phone}
+                  onChange={handleChange}
+                  placeholder="Mobile No."
+                  className="w-full pl-10 border rounded-lg p-2 outline-none focus:ring focus:ring-blue-200"
+                />
+              </div>
+            </div>
+          </div>
 
-        
-
-       
+          {/* 🔘 Update Button */}
+          <div className="flex justify-end mt-6">
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all"
+            >
+              Update Profile
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

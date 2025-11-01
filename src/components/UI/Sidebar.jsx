@@ -27,7 +27,6 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
     { key: "finddoctor", label: "Dashboard", icon: "🏠" },
     { key: "appointments", label: "Appointment History", icon: "📅" },
     { key: "family", label: "Family Members", icon: "👨‍👩‍👧" },
-
   ];
 
   // ✅ Role-based nav
@@ -36,7 +35,9 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
   // 🔁 Page navigation
   const handleNavClick = (item) => {
     if (setActiveNav) setActiveNav(item.key);
-    if (setIsOpen) setIsOpen(false);
+
+    // ✅ Sidebar sirf mobile (width < 768px) par band ho
+    if (window.innerWidth < 768 && setIsOpen) setIsOpen(false);
 
     if (role === "doctor") {
       navigate(`/doctordashboard/${item.key}`);
@@ -55,7 +56,7 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
   return (
     <>
       {/* 🖥️ Desktop Sidebar */}
-      <aside className="hidden md:block w-64 bg-white rounded-2xl shadow-2xl p-4 sticky top-8 self-start mt-20 h-[80vh]">
+      <aside className="hidden md:block w-64 bg-white p-4 sticky self-start h-100vh]">
         <div className="mb-6 text-xl font-bold text-teal-600 text-center">
           {role === "doctor" ? "Yo Doctor" : "Yo Client"}
         </div>
@@ -134,7 +135,7 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
         </div>
       )}
 
-      {/* 🔘 Logout Confirmation Modal (common for both roles) */}
+      {/* 🔘 Logout Confirmation Modal */}
       <LogoutModal
         isOpen={isLogoutModalOpen}
         onClose={() => setIsLogoutModalOpen(false)}

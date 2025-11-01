@@ -220,3 +220,40 @@ export const validateFamilyMember = (member) => {
 
   return errors;
 };
+
+
+// change password validation
+
+export const validatePasswordFields = (fields) => {
+  const { currentPassword, newPassword, confirmPassword } = fields;
+  const errors = {};
+
+  // Current password validation
+  if (!currentPassword.trim()) {
+    errors.currentPassword = "Current password is required";
+  }
+
+  // New password validation
+  if (!newPassword.trim()) {
+    errors.newPassword = "New password is required";
+  } else if (newPassword.length < 8) {
+    errors.newPassword = "Password must be at least 8 characters long";
+  } else if (!/[A-Z]/.test(newPassword)) {
+    errors.newPassword = "Password must include at least one uppercase letter";
+  } else if (!/[a-z]/.test(newPassword)) {
+    errors.newPassword = "Password must include at least one lowercase letter";
+  } else if (!/[0-9]/.test(newPassword)) {
+    errors.newPassword = "Password must include at least one number";
+  } else if (!/[!@#$%^&*]/.test(newPassword)) {
+    errors.newPassword = "Password must include at least one special character (!@#$%^&*)";
+  }
+
+  // Confirm password validation
+  if (!confirmPassword.trim()) {
+    errors.confirmPassword = "Please confirm your new password";
+  } else if (confirmPassword !== newPassword) {
+    errors.confirmPassword = "Passwords do not match";
+  }
+
+  return errors;
+};

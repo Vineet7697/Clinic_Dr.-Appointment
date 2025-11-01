@@ -4,8 +4,7 @@ import ProfileSection from "../components/client_Profile/ProfileSection";
 import AppointmentHistory from "../components/client_Profile/AppointmentHistory";
 import FamilyMembers from "../components/client_Profile/FamilyMembers";
 import SettingsSection from "../components/client_Profile/SettingsSection";
-import EditSection from "../components/client_Profile/EditSection";
-
+import ChangePassword from "../components/client_Profile/ChangePassword";
 const ClientProfilePage = () => {
   const [activeNav, setActiveNav] = useState("profile");
   const [personalDetails, setPersonalDetails] = useState({
@@ -37,7 +36,7 @@ const ClientProfilePage = () => {
         {activeNav === "appointments" && <AppointmentHistory />}
         {activeNav === "family" && <FamilyMembers />}
         {activeNav === "settings" && <SettingsSection />}
-        {activeNav === "edit" && <EditSection />}
+        {activeNav === "changepassword" && <ChangePassword />}
       </main>
     </div>
   );

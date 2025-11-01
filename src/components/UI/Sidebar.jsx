@@ -49,7 +49,7 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
   // 🚪 Logout confirmed
   const handleLogoutConfirm = () => {
     localStorage.removeItem("loggedInUser");
-    setIsLogoutModalOpen(false);
+    
     navigate("/clientloginpage");
   };
 
@@ -77,13 +77,7 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
             </div>
           ))}
 
-          {/* 🚪 Logout (common for doctor + client) */}
-          <div
-            className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-600 cursor-pointer mt-4"
-            onClick={() => setIsLogoutModalOpen(true)}
-          >
-            🚪 <div className="font-medium">Logout</div>
-          </div>
+          
         </nav>
       </aside>
 
@@ -122,14 +116,6 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
                   <div className="font-medium">{item.label}</div>
                 </div>
               ))}
-
-              {/* 🚪 Logout for Mobile */}
-              <div
-                className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-50 hover:text-red-600 cursor-pointer mt-4"
-                onClick={() => setIsLogoutModalOpen(true)}
-              >
-                🚪 <div className="font-medium">Logout</div>
-              </div>
             </nav>
           </div>
         </div>

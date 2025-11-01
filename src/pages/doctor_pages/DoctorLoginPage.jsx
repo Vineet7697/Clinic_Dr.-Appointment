@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { validateDoctorLogin } from "../controller/FormValidation"; // adjust path
+import { validateDoctorLogin } from "../../controller/FormValidation"; // adjust path
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 

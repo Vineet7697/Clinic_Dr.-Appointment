@@ -1,7 +1,7 @@
 
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import data from "../data.json";
+import data from "../../data.json";
 
 const DoctorDetailPage = () => {
   const { id } = useParams();

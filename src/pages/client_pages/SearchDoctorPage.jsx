@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DoctorProfileModal from "../DoctorProfileModal";
+import DoctorProfileModal from "../doctor_pages/DoctorProfileModal";
 
 /**
  * SearchDoctorPage.js

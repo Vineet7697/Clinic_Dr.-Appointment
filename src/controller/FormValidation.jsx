@@ -1,32 +1,22 @@
-//  validation for client LoginForm
-export const validateLoginForm = ({ emailPhone, password, loginWithOtp = false }) => {
+// ✅ Validation for Client Login Form 
+export const validateLoginForm = ({ email, password }) => {
   const errors = {};
 
-  // Email / Mobile validation
-  if (!emailPhone?.trim()) {
-    errors.emailOrMobile = "This field is required."; // <-- match component
-  } else if (/^\d+$/.test(emailPhone)) {
-    // It's a number -> Mobile validation
-    if (!/^[6-9]/.test(emailPhone)) {
-      errors.emailOrMobile = "Mobile number must start with 6,7,8,9.";
-    } else if (emailPhone.length !== 10) {
-      errors.emailOrMobile = "Mobile number must be 10 digits.";
-    }
+  // 🔹 Email validation
+  if (!email?.trim()) {
+    errors.email = "Email is required.";
   } else {
-    // Email validation
     const emailRegex = /^[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}$/;
-    if (!emailRegex.test(emailPhone)) {
-      errors.emailOrMobile = "Enter a valid email address.";
+    if (!emailRegex.test(email)) {
+      errors.email = "Enter a valid email address.";
     }
   }
 
-  // Password validation (only if not logging in with OTP)
-  if (!loginWithOtp) {
-    if (!password?.trim()) {
-      errors.password = "Password is required.";
-    } else if (password.length < 6) {
-      errors.password = "Password must be at least 6 characters.";
-    }
+  // 🔹 Password validation
+  if (!password?.trim()) {
+    errors.password = "Password is required.";
+  } else if (password.length < 6) {
+    errors.password = "Password must be at least 6 characters.";
   }
 
   return errors;

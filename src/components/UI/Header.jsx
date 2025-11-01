@@ -68,9 +68,6 @@ const Header = () => {
         {/* Desktop links */}
         <div className="hidden md:flex gap-6 text-gray-700 font-medium">
           <Link to="/finddoctor" className="hover:text-blue-600 text-black">
-            Home
-          </Link>
-          <Link to="/finddoctor" className="hover:text-blue-600 text-black">
             About
           </Link>
           <Link to="/finddoctor" className="hover:text-blue-600 text-black">
@@ -83,7 +80,9 @@ const Header = () => {
             Help
           </Link>
         </div>
-
+<button className="px-5 py-2 rounded-full bg-[#00b3ff] text-white hover:bg-[#009ee0] transition">
+            Download App
+          </button>
         {/* Profile dropdown */}
         {loggedInUser && (
           <div className="relative" ref={dropdownRef}>

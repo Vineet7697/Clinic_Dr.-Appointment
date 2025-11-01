@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaQrcode, FaClock, FaPlus } from "react-icons/fa";
+import Sidebar from "../UI/Sidebar";
+
+
 
 /**
  * PatientQueuePage.js

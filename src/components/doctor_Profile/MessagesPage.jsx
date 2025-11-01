@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../components/UI/Sidebar"; // ✅ Import Sidebar
+import Sidebar from "../UI/Sidebar"; // ✅ Import Sidebar
 
 const MessagesPage = () => {
   const [activeNav, setActiveNav] = useState("notifications");

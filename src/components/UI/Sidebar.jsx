@@ -24,12 +24,10 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
 
   // 👩‍🦰 Client navigation
   const clientNav = [
-    { key: "profile", label: "My Profile", icon: "👤" },
     { key: "finddoctor", label: "Dashboard", icon: "🏠" },
     { key: "appointments", label: "Appointment History", icon: "📅" },
     { key: "family", label: "Family Members", icon: "👨‍👩‍👧" },
-    { key: "settings", label: "Settings", icon: "⚙" },
-    { key: "edit", label: "Edit Profile", icon: "✏️" },
+
   ];
 
   // ✅ Role-based nav

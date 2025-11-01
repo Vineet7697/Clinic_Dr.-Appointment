@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../components/UI/Sidebar"; // Reusable sidebar component
+import Sidebar from "../UI/Sidebar"; // Reusable sidebar component
 
 const PatientListPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);

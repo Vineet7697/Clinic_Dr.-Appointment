@@ -13,7 +13,7 @@ import AddMember from "../pages/AddMember";
 import DoctorDetailPage from "../pages/DoctorDetailPage";
 import BookAppointmentPage from "../pages/BookAppointmentPage";
 import LandingPage from "../pages/LandingPage";
-import ProfileSettingsPage from '../pages/ProfileSettingsPage';
+import ProfileSettingsPage from '../components/doctor_Profile/ProfileSettingsPage';
 import ClientHomePage from "../pages/ClientHomePage";
 import DashboardHeader from '../pages/DashboardHeader';
 import LogoutModal from '../pages/LogoutModal';
@@ -23,17 +23,17 @@ import DoctorRegistrationPage from '../pages/DoctorRegistrationPage';
 import ClientLoginPage from '../pages/ClientLoginPage';
 import ClientProfilePage from '../pages/ClientProfilePage';
 import ClientRegisterPage from '../pages/ClientRegisterPage';
-import CurrentQueuePage from '../pages/CurrentQueuePage';
+import CurrentQueuePage from '../components/doctor_Profile/CurrentQueuePage';
 import SearchDoctorPage from '../pages/SearchDoctorPage';
-import PatientListPage from '../pages/PatientListPage';
-import PatientQueuePage from '../pages/PatientQueuePage';
-import MessagesPage from '../pages/MessagesPage';
-import PassVerificationPage from '../pages/PassVerificationPage';
+import PatientListPage from '../components/doctor_Profile/PatientListPage';
+import PatientQueuePage from '../components/doctor_Profile/PatientQueuePage';
+import MessagesPage from '../components/doctor_Profile/MessagesPage';
+import PassVerificationPage from '../components/doctor_Profile/PassVerificationPage';
 import DoctorLoginPage from '../pages/DoctorLoginPage';
 import DoctorProfileModal from '../pages/DoctorProfileModal';
 import DoctorDashboard from '../pages/DoctorDashboard';
-import AnalyticsDashboard from '../pages/AnalyticsDashboard';
-import ApprovalStatusPage from '../pages/ApprovalStatusPage';
+import AnalyticsDashboard from '../components/doctor_Profile/AnalyticsDashboard';
+import ApprovalStatusPage from '../components/doctor_Profile/ApprovalStatusPage';
 import ProfileSection from "../components/client_Profile/ProfileSection";
 import Doctor from "../components/client_Profile/Doctor";
 import AppointmentHistory from "../components/client_Profile/AppointmentHistory";
@@ -74,8 +74,8 @@ const Router = () => {
           <Route path="contact" element={<Contact/>} />
           <Route path="help" element={<Help/>} />
        
-<Route path="/bookappointmentpage2" element={<BookAppointmentPage2 />} />
-{/* <Route path="/bookappointmentpage2/:id" element={<BookAppointmentPage2 />} /> */}
+          <Route path="/bookappointmentpage2" element={<BookAppointmentPage2 />} />
+          {/* <Route path="/bookappointmentpage2/:id" element={<BookAppointmentPage2 />} /> */}
           <Route path="patientqueuepage" element={<PatientQueuePage />} />
           <Route path="clientprofilepage" element={<ClientProfilePage />} />
           <Route path="doctorloginpage" element={<DoctorLoginPage />} />

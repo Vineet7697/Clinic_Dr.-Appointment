@@ -104,18 +104,8 @@ const Header = () => {
                       >
                         My Profile
                       </li>
-                      <li
-                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                        onClick={() => handleNavigate("/client/appointments")}
-                      >
-                        Appointment History
-                      </li>
-                      <li
-                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                        onClick={() => handleNavigate("/client/family")}
-                      >
-                        Family Members
-                      </li>
+                     
+                     
                       <li
                         className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                         onClick={() => handleNavigate("/client/settings")}
@@ -126,7 +116,7 @@ const Header = () => {
                         className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                         onClick={() => handleNavigate("/client/edit")}
                       >
-                        Edit
+                       ChangePassword
                       </li>
                     </>
                   ) : userRole === "doctor" ? (
@@ -256,6 +246,7 @@ const Header = () => {
           </Link>
         </ul>
       </div>
+      
     </nav>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../components/UI/Sidebar";
+import Sidebar from "../UI/Sidebar";
 
 const PassVerificationPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);

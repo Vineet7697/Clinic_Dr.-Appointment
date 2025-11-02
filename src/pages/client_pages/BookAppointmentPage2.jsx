@@ -64,42 +64,7 @@ const BookAppointmentPage2 = () => {
          Book Appointment for {doctor?.name || "Doctor"}
       </h3>
 
-        {/* Patient Type Selection */}
-        <div className="flex flex-col md:flex-row md:justify-center gap-6 mb-6">
-          {/* Self */}
-          <div
-            onClick={() => setPatientType("self")}
-            className={`flex-1 flex flex-col items-center justify-center  rounded-xl cursor-pointer transition border ${
-              patientType === "self"
-                ? "border-teal-500 bg-teal-50"
-                : "border-gray-200 bg-white hover:bg-gray-50"
-            }`}
-          >
-            <FaUser
-              className={`text-4xl mb-2 ${
-                patientType === "self" ? "text-teal-500" : "text-gray-400"
-              }`}
-            />
-            <span className="font-semibold text-gray-700">Self</span>
-          </div>
-
-          {/* Family */}
-          <div
-            onClick={() => setPatientType("family")}
-            className={`flex-1 flex flex-col items-center justify-center p-2 rounded-xl cursor-pointer transition border ${
-              patientType === "family"
-                ? "border-teal-500 bg-teal-50"
-                : "border-gray-200 bg-white hover:bg-gray-50"
-            }`}
-          >
-            <FaUsers
-              className={`text-4xl mb-2 ${
-                patientType === "family" ? "text-teal-500" : "text-gray-400"
-              }`}
-            />
-            <span className="font-semibold text-gray-700">Add Member</span>
-          </div>
-        </div>
+       
 
         {/* Family Form */}
         {patientType === "family" && (

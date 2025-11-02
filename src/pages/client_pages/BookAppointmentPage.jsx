@@ -102,7 +102,7 @@ const BookAppointmentPage = ({ members }) => {
               <Button
                 variant="outline-success"
                 className="flex items-center gap-2 border border-green-600 text-green-700 mt-2"
-                onClick={() => setShowAddMember(true)}
+                onClick={() => navigate(`/addfamilypage`)}
               >
                 <FaPlus /> Add Member
               </Button>
@@ -116,7 +116,7 @@ const BookAppointmentPage = ({ members }) => {
             >
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleConfirmBooking}
+          <Button variant="primary" onClick={()=>navigate(`/bookappointmentpage2`)}
           className=" cursor-pointer  hover:text-blue-600"
           >
             Next
@@ -124,122 +124,8 @@ const BookAppointmentPage = ({ members }) => {
         </div>
       </Form>
 
-      {/* Add Member Form */}
-      {showAddMember && (
-        <div className="max-w-md mx-auto bg-white p-6 rounded-xl shadow-lg mt-6">
-          <h2 className="text-xl font-semibold mb-4 text-center">Add Member</h2>
-
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Label className="block mb-1 font-medium text-gray-700">
-                Full Name*
-              </Form.Label>
-              <Form.Control
-                type="text"
-                value={memberData.name}
-                onChange={(e) =>
-                  setMemberData({ ...memberData, name: e.target.value })
-                }
-                isInvalid={!!errors.name}
-                className="border border-gray-400 rounded-md px-3 py-2 w-full"
-              />
-              <Form.Control.Feedback type="invalid">
-                   {errors.name && (
-                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
-              )}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label className="block mb-1 font-medium text-gray-700">
-                Age*
-              </Form.Label>
-              <Form.Control
-                type="text"
-                maxLength={3}
-                value={memberData.age}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (/^\d*$/.test(value)) {
-                    setMemberData({ ...memberData, age: value });
-                  }
-                }}
-                isInvalid={!!errors.age}
-                className="border border-gray-400 rounded-md px-3 py-2 w-full"
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.age && (
-                <p className="text-red-500 text-xs mt-1">{errors.age}</p>
-              )}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label className="block mb-1 font-medium text-gray-700">
-                Mobile*
-              </Form.Label>
-              <Form.Control
-                type="text"
-                maxLength={10}
-                value={memberData.mobile}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (/^\d*$/.test(value)) {
-                    setMemberData({ ...memberData, mobile: value });
-                  }
-                }}
-                isInvalid={!!errors.mobile}
-                className="border border-gray-400 rounded-md px-3 py-2 w-full"
-              />
-              <Form.Control.Feedback type="invalid">
-                 {errors.mobile && (
-                <p className="text-red-500 text-xs mt-1">{errors.mobile}</p>
-              )}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label className="block mb-1 font-medium text-gray-700">
-                Aadhar*
-              </Form.Label>
-              <Form.Control
-                type="text"
-                maxLength={12}
-                value={memberData.aadhar}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (/^\d*$/.test(value)) {
-                    setMemberData({ ...memberData, aadhar: value });
-                  }
-                }}
-                isInvalid={!!errors.aadhar}
-                className="border border-gray-400 rounded-md px-3 py-2 w-full"
-              />
-              <Form.Control.Feedback type="invalid">
-                   {errors.aadhar && (
-                <p className="text-red-500 text-xs mt-1">{errors.aadhar}</p>
-              )}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <div className="flex justify-end gap-3 mt-4 ">
-              <Button
-                variant="secondary"
-                onClick={() => setShowAddMember(false)}
-                className="bg-green-700 rounded-lg text-sm p-2 text-white cursor-pointer"
-              >
-                Cancel
-              </Button>
-              <Button variant="success" onClick={handleSaveMember}
-              className="bg-green-700 rounded-lg text-sm p-2 text-white cursor-pointer"
-              >
-                
-                Save
-              </Button>
-            </div>
-          </Form>
-        </div>
-      )}
+     
+     
     </div>
   );
 };

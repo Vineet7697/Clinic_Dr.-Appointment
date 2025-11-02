@@ -215,16 +215,11 @@ const Cards = () => {
 
                     {/* Buttons aligned to the right */}
                     <div className="flex flex-col justify-center gap-3   ">
-                      {/* <Button
-                        className="bg-blue-700 hover:bg-blue-800 text-white py-2 px-3 rounded-lg cursor-pointer text-sm whitespace-nowrap"
-                         onClick={() => navigate(`/bookappointmentpage2`)} 
-                      >
-                        Book Appointment
-                      </Button> */}
+               
 
                       <Button
                         className="bg-blue-700 hover:bg-blue-800 text-white py-2 px-3 rounded-lg cursor-pointer text-sm whitespace-nowrap"
-                         onClick={() => navigate(`/book`)} 
+                         onClick={() => navigate(`/book-appointment/${doctor.id}`)}
                       >
                         Book Appointment
                       </Button>

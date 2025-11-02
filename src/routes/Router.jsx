@@ -5,8 +5,8 @@ import Layout from "../components/Layout/Layout";
 // 🧩 Pages & Components
 import DoctorRegister from "../pages/doctor_pages/DoctorRegister";
 import Cards from "../pages/client_pages/Cards";
-import AddMember from "../pages/doctor_pages/AddMember";
-import DoctorDetailPage from "../pages/doctor_pages/DoctorDetailPage";
+import AddMember from "../pages/client_pages/AddMember";
+import DoctorDetailPage from "../pages/client_pages/DoctorDetailPage";
 import BookAppointmentPage from "../pages/client_pages/BookAppointmentPage";
 import LandingPage from "../pages/LandingPage";
 import ProfileSettingsPage from "../components/doctor_Profile/ProfileSettingsPage";
@@ -21,6 +21,7 @@ import ClientProfilePage from "../components/client_Profile/ClientProfilePage";
 import ClientRegisterPage from "../pages/client_pages/ClientRegisterPage";
 import CurrentQueuePage from "../components/doctor_Profile/CurrentQueuePage";
 import SearchDoctorPage from "../pages/client_pages/SearchDoctorPage";
+import AddFamilyPage from "../pages/client_pages/AddFamilyPage";
 import PatientListPage from "../components/doctor_Profile/PatientListPage";
 import PatientQueuePage from "../components/doctor_Profile/PatientQueuePage";
 import MessagesPage from "../components/doctor_Profile/MessagesPage";
@@ -45,6 +46,7 @@ import ChangePassword from "../components/client_Profile/ChangePassword";
 
 // 🧭 New Dashboard Layout (for logged-in users)
 import DashboardLayout from "../components/Layout/DashboardLayout";
+
 
 
 
@@ -78,6 +80,8 @@ const Router = () => {
           <Route path="doctorloginpage" element={<DoctorLoginPage />} />
           <Route path="doctorregistrationpage" element={<DoctorRegistrationPage />} />
           <Route path="approvalstatuspage" element={<ApprovalStatusPage />} />
+          <Route path="addfamilypage" element={<AddFamilyPage />} />
+
         </Route>
 
         {/* 🩺 Doctor Dashboard Layout (with HeaderDashboard + Sidebar) */}

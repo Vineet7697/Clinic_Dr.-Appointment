@@ -286,7 +286,7 @@ const ClientLoginPage = () => {
           })
         );
 
-        navigate("/client");
+        navigate("/client/finddoctor");
       } else {
         alert("Invalid email or password!");
       }

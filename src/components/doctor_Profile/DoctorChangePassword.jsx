@@ -3,7 +3,7 @@ import { useState } from "react";
 import { validatePasswordFields } from "../../controller/FormValidation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-const ChangePassword = () => {
+const DoctorChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -165,4 +165,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default DoctorChangePassword;

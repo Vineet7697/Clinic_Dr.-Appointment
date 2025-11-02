@@ -96,37 +96,25 @@ const HeaderDashboard = ({ toggleSidebar, isSidebarOpen }) => {
                     <li onClick={() => handleNavigate("/client/profile")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                       👤 My Profile
                     </li>
-                    <li onClick={() => handleNavigate("/client/settings")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                      ⚙️ Settings
-                    </li>
+                    
                     <li onClick={() => handleNavigate("/client/changepassword")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                       🔒 Change Password
+                    </li>
+                    <li onClick={() => handleNavigate("/client/settings")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                      ⚙️ Settings
                     </li>
                   </>
                 )}
                 {userRole === "doctor" && (
                   <>
-                    <li onClick={() => handleNavigate("/doctor/dashboard")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                      🏠 Dashboard
+                    <li onClick={() => handleNavigate("/doctordashboard/doctorprofilesection")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                      👤 My Profile
                     </li>
-                    <li onClick={() => handleNavigate("/doctor/patients")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                      👩‍⚕️ Today's Patients
+                    <li onClick={() => handleNavigate("/doctordashboard/doctorchangepassword")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                      🔒 Change Password
                     </li>
-                    <li onClick={() => handleNavigate("/doctor/queue")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                      📋 Current Queue
-                    </li>
-                    <li onClick={() => handleNavigate("/doctor/passverification")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                      ✅ Pass Verification
-                    </li>
-                    <li onClick={() => handleNavigate("/doctor/notifications")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                      💬 Notifications
-                    </li>
-                    <li onClick={() => handleNavigate("/doctor/analytics")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                      📊 Analytics
-                    </li>
-                    <li onClick={() => handleNavigate("/doctor/settings")} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                      ⚙ Settings
-                    </li>
+                    
+                   
                   </>
                 )}
                 <li

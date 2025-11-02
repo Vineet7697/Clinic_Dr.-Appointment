@@ -24,7 +24,9 @@ import SearchDoctorPage from "../pages/client_pages/SearchDoctorPage";
 import AddFamilyPage from "../pages/client_pages/AddFamilyPage";
 import PatientListPage from "../components/doctor_Profile/PatientListPage";
 import PatientQueuePage from "../components/doctor_Profile/PatientQueuePage";
+import DoctorChangePassword from "../components/doctor_Profile/DoctorChangePassword";
 import MessagesPage from "../components/doctor_Profile/MessagesPage";
+import DoctorProfileSection from "../components/doctor_Profile/DoctorProfileSection";
 import PassVerificationPage from "../components/doctor_Profile/PassVerificationPage";
 import DoctorLoginPage from "../pages/doctor_pages/DoctorLoginPage";
 import DoctorProfileModal from "../pages/doctor_pages/DoctorProfileModal";
@@ -94,6 +96,8 @@ const Router = () => {
           <Route path="analytics" element={<AnalyticsDashboard />} />
           <Route path="notifications" element={<MessagesPage />} />
           <Route path="settings" element={<ProfileSettingsPage />} />
+          <Route path="doctorprofilesection" element={<DoctorProfileSection />} />
+          <Route path="doctorchangepassword" element={<DoctorChangePassword />} />
         </Route>
 
         {/* 👩‍🦰 Client Dashboard Layout (with HeaderDashboard + Sidebar) */}

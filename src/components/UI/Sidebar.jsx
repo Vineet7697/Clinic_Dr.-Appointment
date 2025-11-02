@@ -19,7 +19,7 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
     { key: "passverification", label: "Pass Verification", icon: "✅" },
     { key: "notifications", label: "Message/Notification", icon: "💬" },
     { key: "analytics", label: "Analytics/Charts", icon: "💹" },
-    { key: "settings", label: "Settings", icon: "⚙" },
+   
   ];
 
   // 👩‍🦰 Client navigation

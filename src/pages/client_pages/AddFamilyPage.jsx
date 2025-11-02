@@ -14,7 +14,6 @@ const AddFamilyPage = () => {
 
   const [errors, setErrors] = useState({});
 
-  // 🧮 Optional: Auto-calculate age based on DOB
   const calculateAge = (dob) => {
     if (!dob) return "";
     const birthDate = new Date(dob);
@@ -26,11 +25,7 @@ const AddFamilyPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     let updated = { ...familyMember, [name]: value };
-
-    if (name === "dob") {
-      updated.age = calculateAge(value);
-    }
-
+    if (name === "dob") updated.age = calculateAge(value);
     setFamilyMember(updated);
   };
 
@@ -46,14 +41,19 @@ const AddFamilyPage = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
+      // 🔹 localStorage me save karna
+      const existingMembers =
+        JSON.parse(localStorage.getItem("familyMembers")) || [];
+      const updatedMembers = [...existingMembers, familyMember];
+      localStorage.setItem("familyMembers", JSON.stringify(updatedMembers));
+
       alert("✅ Family member added successfully!");
-      console.log("Saved Member:", familyMember);
       navigate(-1);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex justify-center items-center py-10 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 px-4 mt-10">
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-lg">
         <h2 className="text-2xl font-semibold text-center mb-6 text-gray-700">
           Add Family Member
@@ -132,14 +132,13 @@ const AddFamilyPage = () => {
             </div>
 
             <div>
-              <label className="block text-gray-700 font-medium mb-1">Age<span className="text-red-500">*</span></label>
+              <label className="block text-gray-700 font-medium mb-1">Age</label>
               <input
                 type="text"
                 name="age"
                 value={familyMember.age}
-                onChange={handleChange}
-                className="w-full border rounded-lg p-2 outline-none focus:ring focus:ring-blue-200"
                 readOnly
+                className="w-full border rounded-lg p-2 bg-gray-100 cursor-not-allowed"
               />
             </div>
           </div>

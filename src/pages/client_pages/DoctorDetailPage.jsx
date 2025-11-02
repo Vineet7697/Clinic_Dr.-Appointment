@@ -42,7 +42,7 @@ const DoctorDetailPage = () => {
           <div className="flex flex-col md:flex-row gap-4">
             <Button
               className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded-lg cursor-pointer"
-              onClick={() => navigate(`/book-appointment/${doctor.id}`)}
+              onClick={() => navigate(`/bookappointmentpage2`)}
             >
               Book Appointment
             </Button>

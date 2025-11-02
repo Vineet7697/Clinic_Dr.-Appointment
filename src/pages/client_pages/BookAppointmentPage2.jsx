@@ -1,14 +1,14 @@
-
-
-
 import React, { useState } from "react";
-import { FaUser, FaUsers } from "react-icons/fa";
-import { validateFamilyMember } from "../../controller/FormValidation"; // ✅ import validation
+import { FaUser, FaUsers, FaCalendarAlt, FaClock } from "react-icons/fa";
+import { validateFamilyMember } from "../../controller/FormValidation";
 import data from "../../data.json";
 import { useNavigate, useParams } from "react-router-dom";
 
 const BookAppointmentPage2 = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const doctor = data.doctor.find((doc) => doc.id === Number(id));
+
   const [patientType, setPatientType] = useState("self");
   const [familyMember, setFamilyMember] = useState({
     name: "",
@@ -17,16 +17,21 @@ const BookAppointmentPage2 = () => {
     MobileNumber: "",
   });
 
-
-  const { id } = useParams();
-  const doctor = data.doctor.find((doc) => doc.id === Number(id));
-
   const [errors, setErrors] = useState({});
-  const [selectedDate, setSelectedDate] = useState("16");
-  const [selectedTime, setSelectedTime] = useState("10:00 AM");
+  const [selectedDateType, setSelectedDateType] = useState("today");
+  const [customDate, setCustomDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
 
-  const dates = Array.from({ length: 31 }, (_, i) => i + 1);
-  const timeSlots = [
+  // 🕒 Time slots for "Today"
+  const todayTimeSlots = Array.from({ length: 12 }, (_, i) => {
+    const hour = 10 + i;
+    const ampm = hour >= 12 ? "PM" : "AM";
+    const formattedHour = hour > 12 ? hour - 12 : hour;
+    return `${formattedHour}:00 ${ampm}`;
+  });
+
+  // 🕒 Default static slots for non-today (could be dynamic later)
+  const defaultTimeSlots = [
     "10:00 AM",
     "10:30 AM",
     "11:00 AM",
@@ -34,6 +39,8 @@ const BookAppointmentPage2 = () => {
     "2:00 PM",
     "2:30 PM",
     "3:00 PM",
+    "4:00 PM",
+    "5:00 PM",
   ];
 
   const handleConfirm = () => {
@@ -45,134 +52,170 @@ const BookAppointmentPage2 = () => {
       }
     }
 
+    const selectedDate =
+      selectedDateType === "today"
+        ? "Today"
+        : selectedDateType === "tomorrow"
+        ? "Tomorrow"
+        : customDate;
+
+    if (!selectedTime) {
+      alert("Please select a time slot!");
+      return;
+    }
+
     const bookingDetails = {
+      doctor: doctor?.name,
       patientType,
       familyMember: patientType === "family" ? familyMember : null,
       selectedDate,
       selectedTime,
     };
 
-    console.log("Appointment Confirmed:", bookingDetails);
-    alert("Appointment Confirmed!");
+    console.log("✅ Appointment Confirmed:", bookingDetails);
+    alert("✅ Appointment Confirmed Successfully!");
     navigate("/patientqueuepage");
   };
 
+  const currentTimeSlots =
+    selectedDateType === "today" ? todayTimeSlots : defaultTimeSlots;
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 px-4 mt-10">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl p-8">
+      <div className="bg-white flex flex-col items-center  rounded-2xl shadow-2xl w-full max-w-4xl p-8 h-[80vh]">
         <h3 className="text-2xl font-semibold text-center mb-6">
-         Book Appointment for {doctor?.name || "Doctor"}
-      </h3>
+          Book Appointment for {doctor?.name || "Doctor"}
+        </h3>
 
-       
+        {/* 🧍 Patient Type */}
+        <div className="flex justify-center gap-6 mb-6">
+          <button
+            onClick={() => setPatientType("self")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition ${
+              patientType === "self"
+                ? "bg-teal-500 text-white border-teal-500"
+                : "border-gray-300 text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            <FaUser /> Self
+          </button>
 
-        {/* Family Form */}
+          <button
+            onClick={() => navigate(`/addfamilypage`)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition ${
+              patientType === "family"
+                ? "bg-teal-500 text-white border-teal-500"
+                : "border-gray-300 text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            <FaUsers /> Add Family Member
+          </button>
+        </div>
+
+        {/* 👨‍👩‍👦 Family Form */}
         {patientType === "family" && (
           <div className="mb-6 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div>
-              <input
-                type="text"
-                value={familyMember.name}
-                onChange={(e) =>
-                  setFamilyMember({ ...familyMember, name: e.target.value })
-                }
-                placeholder="Name"
-                className="w-full border rounded-lg p-2 outline-none focus:ring-2 focus:ring-teal-400"
-              />
-              {errors.name && (
-                <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-              )}
-            </div>
-
-            <div>
-              <input
-                type="number"
-                value={familyMember.age}
-                onChange={(e) =>
-                  setFamilyMember({ ...familyMember, age: e.target.value })
-                }
-                placeholder="Age"
-                className="w-full border rounded-lg p-2 outline-none focus:ring-2 focus:ring-teal-400"
-              />
-              {errors.age && (
-                <p className="text-red-500 text-sm mt-1">{errors.age}</p>
-              )}
-            </div>
-
-            <div>
-              <input
-                type="text"
-                value={familyMember.Aadhar}
-                onChange={(e) =>
-                  setFamilyMember({ ...familyMember, Aadhar: e.target.value })
-                }
-                placeholder="Aadhar Number"
-                className="w-full border rounded-lg p-2 outline-none focus:ring-2 focus:ring-teal-400"
-              />
-              {errors.Aadhar && (
-                <p className="text-red-500 text-sm mt-1">{errors.Aadhar}</p>
-              )}
-            </div>
-
-            <div>
-              <input
-                type="text"
-                value={familyMember.MobileNumber}
-                onChange={(e) =>
-                  setFamilyMember({
-                    ...familyMember,
-                    MobileNumber: e.target.value,
-                  })
-                }
-                placeholder="Mobile Number"
-                className="w-full border rounded-lg p-2 outline-none focus:ring-2 focus:ring-teal-400"
-              />
-              {errors.MobileNumber && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.MobileNumber}
-                </p>
-              )}
-            </div>
+            <input
+              type="text"
+              placeholder="Name"
+              value={familyMember.name}
+              onChange={(e) =>
+                setFamilyMember({ ...familyMember, name: e.target.value })
+              }
+              className="w-full border rounded-lg p-2 outline-none focus:ring-2 focus:ring-teal-400"
+            />
+            <input
+              type="number"
+              placeholder="Age"
+              value={familyMember.age}
+              onChange={(e) =>
+                setFamilyMember({ ...familyMember, age: e.target.value })
+              }
+              className="w-full border rounded-lg p-2 outline-none focus:ring-2 focus:ring-teal-400"
+            />
+            <input
+              type="text"
+              placeholder="Aadhar Number"
+              value={familyMember.Aadhar}
+              onChange={(e) =>
+                setFamilyMember({ ...familyMember, Aadhar: e.target.value })
+              }
+              className="w-full border rounded-lg p-2 outline-none focus:ring-2 focus:ring-teal-400"
+            />
+            <input
+              type="text"
+              placeholder="Mobile Number"
+              value={familyMember.MobileNumber}
+              onChange={(e) =>
+                setFamilyMember({
+                  ...familyMember,
+                  MobileNumber: e.target.value,
+                })
+              }
+              className="w-full border rounded-lg p-2 outline-none focus:ring-2 focus:ring-teal-400"
+            />
           </div>
         )}
 
+        {/* 📅 Date Selection */}
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <button
+            onClick={() => setSelectedDateType("today")}
+            className={`px-4 py-2 rounded-lg border transition ${
+              selectedDateType === "today"
+                ? "bg-teal-500 text-white border-teal-500"
+                : "border-gray-300 text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            Today
+          </button>
 
-         {/* Date & Time Selectors */}
-        <div className="md:flex md:gap-8 mb-8">
-          <div className="grid grid-cols-7 gap-2 mb-4  md:flex-1">
-            {dates.map((date) => (
-              <button
-                key={date}
-                onClick={() => setSelectedDate(String(date))}
-                className={`w-8 h-8 text-sm flex items-center justify-center rounded-full transition ${
-                  selectedDate === String(date) ? "bg-teal-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-teal-100"
-                }`}
-              >
-                {date}
-              </button>
-            ))}
-          </div>
-          <div className="flex flex-col gap-2 md:flex-1 cursor-pointer">
-            {timeSlots.map((time) => (
-              <button
-                key={time}
-                onClick={() => setSelectedTime(time)}
-                className={`py-2 rounded-lg transition text-sm ${
-                  selectedTime === time ? "bg-teal-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-teal-100 cursor-pointer text-sm"
-                }`}
-              >
-                {time}
-              </button>
-            ))}
+          <button
+            onClick={() => setSelectedDateType("tomorrow")}
+            className={`px-4 py-2 rounded-lg border transition ${
+              selectedDateType === "tomorrow"
+                ? "bg-teal-500 text-white border-teal-500"
+                : "border-gray-300 text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            Tomorrow
+          </button>
+
+          <div className="flex items-center gap-2">
+            <input
+              type="date"
+              value={customDate}
+              onChange={(e) => {
+                setSelectedDateType("custom");
+                setCustomDate(e.target.value);
+              }}
+              className="border rounded-lg p-2 outline-none focus:ring-2 focus:ring-teal-400"
+            />
+            <FaCalendarAlt className="text-teal-500" />
           </div>
         </div>
 
+        {/* 🕐 Time Slots */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full mb-8">
+          {currentTimeSlots.map((time) => (
+            <button
+              key={time}
+              onClick={() => setSelectedTime(time)}
+              className={`py-2 rounded-lg text-sm transition flex items-center justify-center gap-2 ${
+                selectedTime === time
+                  ? "bg-teal-500 text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-teal-100"
+              }`}
+            >
+              <FaClock /> {time}
+            </button>
+          ))}
+        </div>
 
-
-        {/* Confirm Button */}
+        {/* ✅ Confirm Button */}
         <button
           onClick={handleConfirm}
-          className="w-full py-4 rounded-2xl bg-gradient-to-r from-teal-400 to-cyan-500 text-white font-bold text-lg shadow-lg hover:from-teal-500 hover:to-cyan-600 transition cursor-pointer"
+          className="px-4 py-4 rounded-2xl bg-gradient-to-r from-teal-400 to-cyan-500 text-white font-bold text-lg shadow-lg hover:from-teal-500 hover:to-cyan-600 transition"
         >
           Confirm Appointment
         </button>

@@ -17,7 +17,7 @@ const AnalyticsDashboard = () => {
     new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(n);
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-white to-blue-50 mt-4">
+    <div className="flex min-h-screen bg-gradient-to-br from-white to-blue-50 mt-10">
       {/* ✅ Main Content */}
       <div className="flex-1 p-6">
         <div className="max-w-7xl mx-auto">

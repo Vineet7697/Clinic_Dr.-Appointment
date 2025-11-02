@@ -36,7 +36,7 @@ const CurrentQueuePage = () => {
   const activePatient = patients.find((p) => p.status === "Consulting");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 flex mt-4">
+    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 flex mt-10">
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">

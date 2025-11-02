@@ -17,7 +17,6 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
     { key: "patients", label: "Today's Patients", icon: "🧑‍⚕" },
     { key: "queue", label: "Current Queue", icon: "🧾" },
     { key: "passverification", label: "Pass Verification", icon: "✅" },
-    { key: "notifications", label: "Message/Notification", icon: "💬" },
     { key: "analytics", label: "Analytics/Charts", icon: "💹" },
    
   ];

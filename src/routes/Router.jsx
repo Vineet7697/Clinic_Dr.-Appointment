@@ -30,7 +30,7 @@ import DoctorProfileSection from "../components/doctor_Profile/DoctorProfileSect
 import PassVerificationPage from "../components/doctor_Profile/PassVerificationPage";
 import DoctorLoginPage from "../pages/doctor_pages/DoctorLoginPage";
 import DoctorProfileModal from "../pages/doctor_pages/DoctorProfileModal";
-import DoctorDashboard from "../pages/doctor_pages/DoctorDashboard";
+import DoctorDashboard from "../components/doctor_Profile/DoctorDashboard";
 import AnalyticsDashboard from "../components/doctor_Profile/AnalyticsDashboard";
 import ApprovalStatusPage from "../pages/doctor_pages/ApprovalStatusPage";
 import ProfileSection from "../components/client_Profile/ProfileSection";

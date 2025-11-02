@@ -37,7 +37,7 @@ const PatientListPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 flex flex-col md:flex-row mt-4">
+    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 flex flex-col md:flex-row mt-10">
       <div className="flex-1 flex flex-col w-full">
         <main className="p-4 sm:p-6 flex-1 overflow-x-auto">
           <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 mt-2 text-center sm:text-left">

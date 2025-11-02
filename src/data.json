@@ -114,7 +114,58 @@
       "Clinic_Fees":"500 fee",
       "description": "Specialist in advanced joint treatments and Homoeopath."
     }
-      ]
+      ],
+
+    "Appointment_history":[
+  {
+    "id": 1,
+    "doctorName": "Dr. Priya Sharma",
+    "specialization": "Cardiologist",
+    "date": "2025-10-25",
+    "time": "10:30 AM",
+    "hospital": "City Care Hospital",
+    "status": "Completed"
+  },
+  {
+    "id": 2,
+    "doctorName": "Dr. Rohan Mehta",
+    "specialization": "Dermatologist",
+    "date": "2025-10-29",
+    "time": "2:00 PM",
+    "hospital": "Wellness Clinic",
+    "status": "Cancelled"
+  },
+  {
+    "id": 3,
+    "doctorName": "Dr. Neha Singh",
+    "specialization": "Dentist",
+    "date": "2025-11-02",
+    "time": "4:45 PM",
+    "hospital": "Smile Dental Care",
+    "status": "Upcoming"
+  },
+  {
+    "id": 4,
+    "doctorName": "Dr. Priyanka Patel",
+    "specialization": "Cardiology",
+    "date": "2025-11-02",
+    "time": "6:00 PM",
+    "hospital": " cardiology with  patient care",
+    "status": "Cancelled"
+  },
+  {
+    "id": 5,
+    "doctorName": "Dr. Kanika Kapoor",
+    "specialization": "Dermatologist ",
+    "date": "2025-11-02",
+    "time": "10:00 PM",
+    "hospital": "Wellness Clinic",
+    "status": "Upcoming"
+  }
+]
+
+
+
 }
 
 

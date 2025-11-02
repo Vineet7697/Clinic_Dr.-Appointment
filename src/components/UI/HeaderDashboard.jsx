@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
@@ -14,7 +13,7 @@ const HeaderDashboard = ({ toggleSidebar, isSidebarOpen }) => {
   const dropdownRef = useRef(null);
   const userRole = loggedInUser?.role;
 
-  // ✅ Sync user info
+  // ✅ Sync user info (real-time)
   useEffect(() => {
     const updateUser = () => {
       const updatedUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -23,14 +22,15 @@ const HeaderDashboard = ({ toggleSidebar, isSidebarOpen }) => {
     window.addEventListener("storage", updateUser);
     window.addEventListener("userLogin", updateUser);
     window.addEventListener("userLogout", updateUser);
+    window.addEventListener("userProfileUpdated", updateUser);
     return () => {
       window.removeEventListener("storage", updateUser);
       window.removeEventListener("userLogin", updateUser);
       window.removeEventListener("userLogout", updateUser);
+      window.removeEventListener("userProfileUpdated", updateUser);
     };
   }, []);
 
-  // ✅ Logout
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser");
     setLoggedInUser(null);
@@ -64,15 +64,13 @@ const HeaderDashboard = ({ toggleSidebar, isSidebarOpen }) => {
         isSidebarOpen ? "md:left-64 md:w-[calc(100%-16rem)]" : "w-full"
       } bg-white border-b border-gray-200 px-4 py-3 flex justify-between items-center z-50 transition-all duration-300`}
     >
-      {/* ☰ Sidebar Toggle Icon */}
       <button
         onClick={toggleSidebar}
         className="text-gray-700 text-xl hover:text-blue-500 transition"
       >
-         <FaBars />
+        <FaBars />
       </button>
 
-      {/* 👤 Profile */}
       <div className="flex items-center gap-4 relative">
         <div className="relative" ref={dropdownRef}>
           <button
@@ -143,7 +141,6 @@ const HeaderDashboard = ({ toggleSidebar, isSidebarOpen }) => {
         </div>
       </div>
 
-      {/* 🚪 Logout Modal */}
       <LogoutModal
         isOpen={isLogoutModalOpen}
         onClose={() => setIsLogoutModalOpen(false)}

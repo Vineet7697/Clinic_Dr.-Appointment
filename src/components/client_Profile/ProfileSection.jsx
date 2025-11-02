@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   FaUser,
   FaEnvelope,
@@ -19,12 +19,15 @@ const ProfileSection = () => {
     address: "",
     pinCode: "",
     dob: "",
+    avatar: "/images/default-avatar.png",
   };
 
   const [profile, setProfile] = useState(user);
   const [profileImage, setProfileImage] = useState(
-    user?.profileImage || "/images/default-avatar.png"
+    user?.avatar || "/images/default-avatar.png"
   );
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
 
   // 🖊️ Edit photo
   const handleImageChange = (e) => {
@@ -32,46 +35,63 @@ const ProfileSection = () => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setProfileImage(imageUrl);
-      setProfile({ ...profile, profileImage: imageUrl });
+      setProfile({ ...profile, avatar: imageUrl });
+
+      const updatedUser = { ...profile, avatar: imageUrl };
+      localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
+      window.dispatchEvent(new Event("userProfileUpdated"));
     }
   };
 
-  // 🗑️ Remove photo
+  // 🗑️ Remove photo (confirmed)
   const handleRemoveImage = () => {
-    setProfileImage("/images/default-avatar.png");
-    setProfile({ ...profile, profileImage: "/images/default-avatar.png" });
+    const defaultImage = "/images/default-avatar.png";
+    setProfileImage(defaultImage);
+    setProfile({ ...profile, avatar: defaultImage });
+    localStorage.setItem(
+      "loggedInUser",
+      JSON.stringify({ ...profile, avatar: defaultImage })
+    );
+    window.dispatchEvent(new Event("userProfileUpdated"));
+    setShowDeleteModal(false);
   };
 
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // 🧩 Open update modal instead of directly submitting
+  const handleUpdateClick = (e) => {
     e.preventDefault();
+    setShowUpdateModal(true);
+  };
+
+  // ✅ Confirm update
+  const confirmUpdateProfile = () => {
     localStorage.setItem("loggedInUser", JSON.stringify(profile));
+    window.dispatchEvent(new Event("userProfileUpdated"));
+    setShowUpdateModal(false);
     alert("✅ Profile updated successfully!");
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-50 py-10 px-4">
+    <div className="min-h-screen flex justify-center items-center bg-gray-50 py-10 px-4 relative">
       <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-4xl">
         <h2 className="text-2xl font-semibold text-center mb-6 text-gray-700">
           My Profile
         </h2>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleUpdateClick}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
             {/* 👤 Profile Image Section */}
             <div className="flex flex-col items-center">
               <img
                 src={profileImage}
                 alt="Profile"
-                className="w-32 h-32 rounded-lg object-cover border border-gray-300 shadow-sm"
+                className="w-32 h-32 rounded-full object-cover border border-gray-300 shadow-sm"
               />
 
-              {/* ✏️🗑️ Icons below image */}
               <div className="flex gap-4 mt-3">
-                {/* Edit photo */}
                 <label className="cursor-pointer text-blue-600 hover:text-blue-800 transition">
                   <FaEdit size={18} />
                   <input
@@ -82,10 +102,9 @@ const ProfileSection = () => {
                   />
                 </label>
 
-                {/* Remove photo */}
                 <button
                   type="button"
-                  onClick={handleRemoveImage}
+                  onClick={() => setShowDeleteModal(true)}
                   className="text-red-500 hover:text-red-700 transition"
                 >
                   <FaTrash size={18} />
@@ -180,7 +199,6 @@ const ProfileSection = () => {
             </div>
           </div>
 
-          {/* 🔘 Update Button */}
           <div className="flex justify-end mt-6">
             <button
               type="submit"
@@ -191,6 +209,58 @@ const ProfileSection = () => {
           </div>
         </form>
       </div>
+
+      {/* 🧩 Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-50">
+          <div className="bg-white rounded-xl shadow-lg p-6 w-80 text-center">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+              Are you sure you want to delete your profile image?
+            </h3>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => setShowDeleteModal(false)}
+                className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition"
+              >
+                No
+              </button>
+
+              <button
+                onClick={handleRemoveImage}
+                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 🧩 Update Confirmation Modal */}
+      {showUpdateModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-50">
+          <div className="bg-white rounded-xl shadow-lg p-6 w-80 text-center">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+              Are you sure you want to update your profile?
+            </h3>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => setShowUpdateModal(false)}
+                className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition"
+              >
+                No
+              </button>
+
+              <button
+                onClick={confirmUpdateProfile}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

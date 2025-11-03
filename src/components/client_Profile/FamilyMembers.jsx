@@ -24,7 +24,7 @@ const FamilyMembers = () => {
           <table className="min-w-full border border-gray-200 rounded-lg overflow-hidden">
             <thead className="bg-blue-100">
               <tr>
-                <th className="px-4 py-2 border text-left">#</th>
+                <th className="px-4 py-2 border text-left">s.no.</th>
                 <th className="px-4 py-2 border text-left">Full Name</th>
                 <th className="px-4 py-2 border text-left">Gender</th>
                 <th className="px-4 py-2 border text-left">DOB</th>

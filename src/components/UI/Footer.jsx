@@ -69,6 +69,9 @@ const Footer = () => {
 
       {/* BOTTOM SECTION */}
       <div className="flex flex-col items-center justify-center text-center gap-3 px-4">
+         <span className="mr-2">
+          🩺 Yo Doctor — Smart care with a human touch
+        </span>
         <p className="text-[#B8BBD9] text-sm">
           Copyright &copy; 2025, <span className="font-semibold">Yo Doctor</span>. All rights reserved.
         </p>

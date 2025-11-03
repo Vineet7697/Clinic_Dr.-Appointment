@@ -69,16 +69,6 @@ const LandingPage = () => {
           </div>
         ))}
       </div>
-
-      {/* Footer */}
-      <footer className="py-6 text-center text-[#1b2d45] font-medium">
-        <span className="mr-2">
-          🩺 Yo Doctor — Smart care with a human touch
-        </span>
-        <span className="text-sm block mt-2">
-          © 2025 Yo Doctor | All rights reserved.
-        </span>
-      </footer>
     </section>
   );
 };

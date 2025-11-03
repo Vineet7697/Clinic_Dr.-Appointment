@@ -92,12 +92,7 @@ const Sidebar = ({ activeNav, setActiveNav, isOpen, setIsOpen }) => {
               <div className="font-bold text-teal-600 text-lg">
                 {role === "doctor" ? "Yo Doctor" : "Yo Client"}
               </div>
-              <button
-                className="p-1 rounded-md hover:bg-gray-100"
-                onClick={() => setIsOpen(false)}
-              >
-                ✕
-              </button>
+             
             </div>
 
             <nav className="space-y-2">

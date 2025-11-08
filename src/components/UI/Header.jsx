@@ -43,7 +43,7 @@ const Header = () => {
           About
         </Link>
         <Link to="/service" className="hover:text-blue-600 text-black">
-          Service
+          Services
         </Link>
         <Link to="/contact" className="hover:text-blue-600 text-black">
           Contact
@@ -87,7 +87,7 @@ const Header = () => {
             onClick={() => setMenuOpen(false)}
             className="hover:text-blue-600"
           >
-            Service
+            Services
           </Link>
           <Link
             to="/contact"

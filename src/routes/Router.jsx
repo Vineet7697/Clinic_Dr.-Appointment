@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 
 // 🧩 Pages & Components
+
 import DoctorRegister from "../pages/doctor_pages/DoctorRegister";
 import Cards from "../pages/client_pages/Cards";
 import AddMember from "../pages/client_pages/AddMember";
@@ -37,7 +38,6 @@ import ProfileSection from "../components/client_Profile/ProfileSection";
 import ClientDashboard from "../components/client_Profile/ClientDashboard";
 import AppointmentHistory from "../components/client_Profile/AppointmentHistory";
 import FamilyMembers from "../components/client_Profile/FamilyMembers";
-import SettingsSection from "../components/client_Profile/SettingsSection";
 import ClientLayout from "../pages/client_pages/ClientLayout";
 import DoctorLayout from "../pages/doctor_pages/DoctorLayout";
 import About from "../pages/About";
@@ -48,6 +48,7 @@ import ChangePassword from "../components/client_Profile/ChangePassword";
 
 // 🧭 New Dashboard Layout (for logged-in users)
 import DashboardLayout from "../components/Layout/DashboardLayout";
+import LandingPage2 from "../pages/LandingPage2";
 
 
 
@@ -62,6 +63,7 @@ const Router = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />} />
           <Route path="doctorregister" element={<DoctorRegister />} />
+          <Route path="landingpage2" element={<LandingPage2 />} />
           <Route path="cards" element={<Cards />} />
           <Route path="addmember" element={<AddMember />} />
           <Route path="doctor/:id" element={<DoctorDetailPage />} />
@@ -107,7 +109,6 @@ const Router = () => {
           <Route path="finddoctor" element={<ClientDashboard />} />
           <Route path="appointments" element={<AppointmentHistory />} />
           <Route path="family" element={<FamilyMembers />} />
-          <Route path="settings" element={<SettingsSection />} />
           <Route path="changepassword" element={<ChangePassword />} />
         </Route>
 

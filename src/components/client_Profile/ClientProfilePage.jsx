@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ProfileSection from "./ProfileSection";
 import AppointmentHistory from "./AppointmentHistory";
 import FamilyMembers from "./FamilyMembers";
-import SettingsSection from "./SettingsSection";
+import SettingsSection from "./ClientSettingsSection";
 import ChangePassword from "./ChangePassword";
 const ClientProfilePage = () => {
   const [activeNav, setActiveNav] = useState("profile");

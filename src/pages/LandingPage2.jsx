@@ -6,15 +6,15 @@ const LandingPage2 = () => {
   return (
     <>
       {/* Services Section */}
-      <div className="flex flex-wrap  justify-center  mt-20">
+      <div className="flex flex-wrap  justify-center  gap-6 mt-20">
         {[
-          { img: "/images/videoConsultation.png", label: "  Doctor video Consultation" },
+          { img: "/images/videoConsultation.png", label: "  Online video Consultation" },
           { img: "/images/LabTest.png", label: "Lab Test" },
           { img: "/images/orderMedicine.png", label: "Medicine Delivery" },
           { img: "/images/homeConsulation.png", label: "Home Consultation " },
           { img: "/images/BookonlineAppointment.png", label: " Online Book Appointment " },
-          { img: "/images/FindBloodDonores.png", label: "Blood Doner " },
-          { img: "/images/physicalApointment.png", label: " Physical Appointment " },
+          { img: "/images/FindBloodDonores.png", label: " Find Blood Doner " },
+        
         ].map((service, index) => (
           <div key={index} className="text-center w-40 ">
             <img

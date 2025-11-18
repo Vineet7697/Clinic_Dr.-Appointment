@@ -228,7 +228,7 @@ const About = () => {
 
     <div class="flex-1 flex justify-center">
       <img
-        src="/images/online-consultation.webp"
+        src="/images/online-consultation.png"
         alt="Online Consultation"
         class="rounded-2xl shadow-lg w-full h-full max-w-lg"
       />

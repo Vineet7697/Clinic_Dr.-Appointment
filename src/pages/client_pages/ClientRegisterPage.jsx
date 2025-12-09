@@ -55,7 +55,7 @@ const ClientRegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 relative flex items-center justify-center overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 relative flex items-center justify-center overflow-hidden mt-10">
       <div className="absolute inset-0 opacity-10 bg-[url('https://img.freepik.com/free-vector/medical-pattern-background_53876-115572.jpg')] bg-cover bg-center"></div>
       <div className="absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-b from-purple-500 to-indigo-500 rounded-tr-full rounded-br-full"></div>
 
@@ -215,6 +215,16 @@ const ClientRegisterPage = () => {
               Register & Continue
             </button>
           </form>
+
+           <p className="mt-6 text-center text-gray-500 text-sm">
+            Already have an account?{" "}
+            <button
+              onClick={() => navigate("/clientLoginpage")}
+              className="text-blue-500 font-medium hover:underline cursor-pointer"
+            >
+              Login here
+            </button>
+          </p>
         </div>
 
         {/* Right Side - Illustration */}

@@ -77,9 +77,6 @@ const ClientLoginPage = () => {
       <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md p-8 md:p-12">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800">Login to Yo Doctor</h1>
-          <p className="text-gray-500 mt-2 text-sm">
-            Enter your credentials to continue
-          </p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-5 sm:space-y-6">
@@ -182,7 +179,7 @@ const ClientLoginPage = () => {
             Don’t have an account?{" "}
             <button
               onClick={() => navigate("/clientregisterpage")}
-              className="text-blue-500 font-medium hover:underline"
+              className="text-blue-500 font-medium hover:underline cursor-pointer"
             >
               Register here
             </button>

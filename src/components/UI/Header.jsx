@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {NavLink, Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
@@ -38,19 +38,24 @@ const Header = () => {
       </div>
 
       {/* CENTER SECTION - Navigation Links */}
-      <div className="hidden md:flex gap-8 text-gray-700 font-medium">
-        <Link to="/about" className="hover:text-blue-600 text-black">
-          About
-        </Link>
-        <Link to="/service" className="hover:text-blue-600 text-black">
-          Services
-        </Link>
-        <Link to="/contact" className="hover:text-blue-600 text-black">
-          Contact
-        </Link>
-        <Link to="/help" className="hover:text-blue-600 text-black">
-          Help
-        </Link>
+      <div className="hidden md:flex gap-8 font-medium">
+        {[
+          { name: "About", path: "/about" },
+          { name: "Services", path: "/service" },
+          { name: "Contact", path: "/contact" },
+          { name: "Help", path: "/help" },
+        ].map((item) => (
+          <NavLink
+            key={item.path}
+            to={item.path}
+            className={({ isActive }) =>
+              `text-black hover:text-blue-600 pb-1 border-b-3 transition 
+         ${isActive ? "border-[#14BEF0]" : "border-transparent"}`
+            }
+          >
+            {item.name}
+          </NavLink>
+        ))}
       </div>
 
       {/* RIGHT SECTION - Download Button */}

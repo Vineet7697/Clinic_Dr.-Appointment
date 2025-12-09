@@ -6,26 +6,55 @@ const LandingPage2 = () => {
   return (
     <>
       {/* Services Section */}
-      <div className="flex flex-wrap  justify-center  gap-6 mt-20">
-        {[
-          { img: "/images/videoConsultation.png", label: "  Online video Consultation" },
-          { img: "/images/LabTest.png", label: "Lab Test" },
-          { img: "/images/orderMedicine.png", label: "Medicine Delivery" },
-          { img: "/images/homeConsulation.png", label: "Home Consultation " },
-          { img: "/images/BookonlineAppointment.png", label: " Online Book Appointment " },
-          { img: "/images/FindBloodDonores.png", label: " Find Blood Doner " },
-        
-        ].map((service, index) => (
-          <div key={index} className="text-center w-40 ">
-            <img
-              src={service.img}
-              alt={service.label}
-              className="w-32 h-32 mx-auto object-contain"
-            />
-            <p className="text-gray-600 font-medium mt-2">{service.label}</p>
-          </div>
-        ))}
-      </div>
+      <div className="flex flex-wrap justify-center gap-6 mt-20">
+  {[
+    {
+      img: "/images/videoConsultation.png",
+      label: "Online video Consultation",
+      link: "/video-consultation",   // ✅ new file/page link
+    },
+    {
+      img: "/images/LabTest.png",
+      label: "Lab Test",
+      link: "/lab-test",
+    },
+    {
+      img: "/images/orderMedicine.png",
+      label: "Medicine Delivery",
+      link: "/medicine",
+    },
+    {
+      img: "/images/homeConsulation.png",
+      label: "Home Consultation",
+      link: "/home-consultation",
+    },
+    {
+      img: "/images/BookonlineAppointment.png",
+      label: "Online Book Appointment",
+      link: "/book-appointment",
+    },
+    {
+      img: "/images/FindBloodDonores.png",
+      label: "Find Blood Doner",
+      link: "/blood-donor",
+    },
+  ].map((service, index) => (
+    <a
+      key={index}
+      href={service.link}
+      target="_blank"       // ✅ new tab me open hoga
+      rel="noopener noreferrer"
+      className="text-center w-40 cursor-pointer"
+    >
+      <img
+        src={service.img}
+        alt={service.label}
+        className="w-32 h-32 mx-auto object-contain hover:scale-105 transition"
+      />
+      <p className="text-gray-600 font-medium mt-2">{service.label}</p>
+    </a>
+  ))}
+</div>
 
     <Swiper
       className="mySwiper w-full max-w-6xl mx-auto mb-20 rounded-2xl"

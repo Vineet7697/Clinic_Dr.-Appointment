@@ -14,7 +14,7 @@ const LandingPage2 = () => {
       link: "/video-consultation",   // ✅ new file/page link
     },
     {
-      img: "/images/LabTest.png",
+      img: "/images/labtesting.png",
       label: "Lab Test",
       link: "/lab-test",
     },
